@@ -385,8 +385,8 @@ export default function Index() {
           </Card>
         </div>
 
-        {/* Account Overview - Fixed width sidebar */}
-        <div className="lg:w-80 lg:flex-shrink-0">
+        {/* Account Overview - Compact section */}
+        <div className="lg:col-span-4">
           <Card>
             <CardHeader className="pb-3">
               <CardTitle className="flex items-center text-lg">
