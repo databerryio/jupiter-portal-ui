@@ -252,7 +252,6 @@ const systemMonitoringAlerts = [
   },
 ];
 
-
 const accountDetails = {
   name: "Admin User",
   email: "admin@portal.com",
@@ -288,10 +287,9 @@ export default function Index() {
     }
   };
 
-
   return (
     <div className="container mx-auto p-4 space-y-6 max-w-none">
-      {/* Stats Grid */}
+      {/* Top Section - 4 Metric Areas */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {systemStats.map((stat, index) => {
           const Icon = stat.icon;
@@ -330,8 +328,9 @@ export default function Index() {
 
       {/* Top-Left-Right Layout Structure */}
       <div className="flex flex-col lg:flex-row gap-6 items-start">
-        {/* Recent Activity - 3 units (75% width) */}
-        <div className="w-full md:flex-[3_3_0%] md:min-w-0">
+        {/* Left Section - Waterfall layout (75%+ width) */}
+        <div className="w-full lg:flex-1 lg:min-w-[75%] space-y-6">
+          {/* Recent Activity - First layer */}
           <Card className="h-fit">
             <CardHeader className="pb-4">
               <CardTitle className="flex items-center text-lg">
@@ -383,10 +382,71 @@ export default function Index() {
               </div>
             </CardContent>
           </Card>
+
+          {/* Products & Services - Second layer */}
+          <Card className="h-fit">
+            <CardHeader className="pb-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <CardTitle className="flex items-center">
+                    <Layers className="h-5 w-5 mr-2" />
+                    Products & Services
+                  </CardTitle>
+                  <CardDescription>
+                    Quick access to business applications and services
+                  </CardDescription>
+                </div>
+                <Button size="sm" className="flex items-center gap-2">
+                  <Plus className="h-4 w-4" />
+                  Add Product
+                </Button>
+              </div>
+            </CardHeader>
+            <CardContent className="pb-4">
+              <div className="grid grid-cols-1 sm:grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-3">
+                {productsAndServices.slice(0, 6).map((product) => {
+                  const Icon = product.icon;
+
+                  return (
+                    <Link key={product.id} to={product.href}>
+                      <div className="group p-3 rounded-lg border hover:border-primary transition-all hover:shadow-sm">
+                        <div className="flex items-center space-x-3">
+                          <div
+                            className={cn(
+                              "p-2 rounded-lg text-white group-hover:scale-105 transition-transform",
+                              product.color,
+                            )}
+                          >
+                            <Icon className="h-5 w-5" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <h4 className="font-medium text-sm group-hover:text-primary transition-colors truncate">
+                              {product.name}
+                            </h4>
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  );
+                })}
+              </div>
+
+              <div className="mt-4 pt-4 border-t">
+                <Link
+                  to="/products-services"
+                  className="inline-flex items-center text-sm text-primary hover:underline"
+                >
+                  View all products & services
+                  <ArrowRight className="h-3 w-3 ml-1" />
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
         </div>
 
-        {/* Account Overview - 1 unit (25% width) */}
-        <div className="w-full md:flex-[1_1_0%] md:min-w-0">
+        {/* Right Section - Waterfall layout (25% width) */}
+        <div className="w-full lg:w-1/4 lg:flex-shrink-0 space-y-6">
+          {/* Account Overview - First layer */}
           <Card className="h-fit">
             <CardHeader className="pb-3">
               <CardTitle className="flex items-center text-lg">
@@ -462,72 +522,8 @@ export default function Index() {
               </div>
             </CardContent>
           </Card>
-        </div>
 
-        {/* Products & Services - 3 units (75% width) */}
-        <div className="w-full md:flex-[3_3_0%] md:min-w-0">
-          <Card className="h-fit">
-            <CardHeader className="pb-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <CardTitle className="flex items-center">
-                    <Layers className="h-5 w-5 mr-2" />
-                    Products & Services
-                  </CardTitle>
-                  <CardDescription>
-                    Quick access to business applications and services
-                  </CardDescription>
-                </div>
-                <Button size="sm" className="flex items-center gap-2">
-                  <Plus className="h-4 w-4" />
-                  Add Product
-                </Button>
-              </div>
-            </CardHeader>
-            <CardContent className="pb-4">
-              <div className="grid grid-cols-1 sm:grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-3">
-                {productsAndServices.slice(0, 6).map((product) => {
-                  const Icon = product.icon;
-
-                  return (
-                    <Link key={product.id} to={product.href}>
-                      <div className="group p-3 rounded-lg border hover:border-primary transition-all hover:shadow-sm">
-                        <div className="flex items-center space-x-3">
-                          <div
-                            className={cn(
-                              "p-2 rounded-lg text-white group-hover:scale-105 transition-transform",
-                              product.color,
-                            )}
-                          >
-                            <Icon className="h-5 w-5" />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <h4 className="font-medium text-sm group-hover:text-primary transition-colors truncate">
-                              {product.name}
-                            </h4>
-                          </div>
-                        </div>
-                      </div>
-                    </Link>
-                  );
-                })}
-              </div>
-
-              <div className="mt-4 pt-4 border-t">
-                <Link
-                  to="/products-services"
-                  className="inline-flex items-center text-sm text-primary hover:underline"
-                >
-                  View all products & services
-                  <ArrowRight className="h-3 w-3 ml-1" />
-                </Link>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* System Monitoring - 1 unit (25% width) */}
-        <div className="w-full md:flex-[1_1_0%] md:min-w-0">
+          {/* System Monitoring - Second layer */}
           <Card className="h-fit">
             <CardHeader className="pb-4">
               <CardTitle className="flex items-center text-lg">
@@ -580,7 +576,6 @@ export default function Index() {
           </Card>
         </div>
       </div>
-
     </div>
   );
 }
