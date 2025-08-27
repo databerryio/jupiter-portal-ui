@@ -328,10 +328,10 @@ export default function Index() {
         })}
       </div>
 
-      {/* 4-Unit Flexbox System - Auto-wrapping Layout */}
-      <div className="flex flex-wrap gap-6 items-start">
+      {/* 4-Unit Flexbox System - Auto-wrapping Layout with flush alignment */}
+      <div className="flex flex-wrap gap-6 items-start w-full">
         {/* Recent Activity - 3 units (75% width) */}
-        <div className="w-full md:w-[calc(75%-12px)] flex-none">
+        <div className="w-full md:w-[calc(75%-18px)] flex-none">
           <Card className="h-fit">
             <CardHeader className="pb-4">
               <CardTitle className="flex items-center text-lg">
@@ -386,7 +386,7 @@ export default function Index() {
         </div>
 
         {/* Account Overview - 1 unit (25% width) */}
-        <div className="w-full md:w-[calc(25%-12px)] flex-none">
+        <div className="w-full md:w-[calc(25%-6px)] flex-none">
           <Card className="h-fit">
             <CardHeader className="pb-3">
               <CardTitle className="flex items-center text-lg">
@@ -465,7 +465,7 @@ export default function Index() {
         </div>
 
         {/* Products & Services - 3 units (75% width) */}
-        <div className="w-full md:w-[calc(75%-12px)] flex-none">
+        <div className="w-full md:w-[calc(75%-18px)] flex-none">
           <Card className="h-fit">
             <CardHeader className="pb-4">
               <div className="flex items-center justify-between">
@@ -527,7 +527,7 @@ export default function Index() {
         </div>
 
         {/* System Monitoring - 1 unit (25% width) */}
-        <div className="w-full md:w-[calc(25%-12px)] flex-none">
+        <div className="w-full md:w-[calc(25%-6px)] flex-none">
           <Card className="h-fit">
             <CardHeader className="pb-4">
               <CardTitle className="flex items-center text-lg">
