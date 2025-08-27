@@ -321,26 +321,6 @@ export default function Index() {
 
   return (
     <div className="container mx-auto p-4 space-y-6">
-      {/* Header */}
-      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Portal Console</h1>
-          <p className="text-muted-foreground text-lg">
-            Centralized management for products, services, and operations
-          </p>
-        </div>
-        <div className="flex items-center space-x-2">
-          <Button variant="outline" onClick={handleRefresh} disabled={isLoading}>
-            <RefreshCw className={cn("h-4 w-4 mr-2", isLoading && "animate-spin")} />
-            Refresh
-          </Button>
-          <Button>
-            <Plus className="h-4 w-4 mr-2" />
-            Add Service
-          </Button>
-        </div>
-      </div>
-
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {systemStats.map((stat, index) => {
