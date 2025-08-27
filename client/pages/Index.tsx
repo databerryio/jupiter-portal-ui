@@ -328,10 +328,10 @@ export default function Index() {
         })}
       </div>
 
-      {/* 4-Unit Grid System - Auto-wrapping Layout */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 auto-rows-min items-start">
-        {/* Recent Activity - 3 grid units */}
-        <div className="md:col-span-3">
+      {/* 4-Unit Flexbox System - Auto-wrapping Layout */}
+      <div className="flex flex-wrap gap-6 items-start">
+        {/* Recent Activity - 3 units (75% width) */}
+        <div className="w-full md:w-[calc(75%-12px)] flex-none">
           <Card className="h-fit">
             <CardHeader className="pb-4">
               <CardTitle className="flex items-center text-lg">
@@ -385,8 +385,8 @@ export default function Index() {
           </Card>
         </div>
 
-        {/* Account Overview - 1 grid unit */}
-        <div className="md:col-span-1">
+        {/* Account Overview - 1 unit (25% width) */}
+        <div className="w-full md:w-[calc(25%-12px)] flex-none">
           <Card className="h-fit">
             <CardHeader className="pb-3">
               <CardTitle className="flex items-center text-lg">
@@ -464,8 +464,8 @@ export default function Index() {
           </Card>
         </div>
 
-        {/* Products & Services - 3 grid units */}
-        <div className="md:col-span-3">
+        {/* Products & Services - 3 units (75% width) */}
+        <div className="w-full md:w-[calc(75%-12px)] flex-none">
           <Card className="h-fit">
             <CardHeader className="pb-4">
               <div className="flex items-center justify-between">
@@ -526,8 +526,8 @@ export default function Index() {
           </Card>
         </div>
 
-        {/* System Monitoring - 1 grid unit */}
-        <div className="md:col-span-1">
+        {/* System Monitoring - 1 unit (25% width) */}
+        <div className="w-full md:w-[calc(25%-12px)] flex-none">
           <Card className="h-fit">
             <CardHeader className="pb-4">
               <CardTitle className="flex items-center text-lg">
