@@ -463,12 +463,9 @@ export default function Index() {
             </CardContent>
           </Card>
         </div>
-      </div>
 
-      {/* Third Row: Products & Services and System Monitoring - Fluid Layout */}
-      <div className="flex flex-col lg:flex-row gap-6">
-        {/* Products & Services - Takes most space */}
-        <div className="flex-1 lg:min-w-0">
+        {/* Products & Services - Large section */}
+        <div className="lg:col-span-8">
           <Card>
             <CardHeader className="pb-4">
               <div className="flex items-center justify-between">
