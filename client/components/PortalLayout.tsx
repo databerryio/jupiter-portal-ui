@@ -48,24 +48,24 @@ export function PortalLayout({ children }: PortalLayoutProps) {
 
             {/* Navigation */}
             <nav className="hidden lg:flex items-center space-x-6 text-sm font-medium">
-            {navigationItems.map((item) => {
-              const Icon = item.icon;
-              const isActive = location.pathname === item.href;
+              {navigationItems.map((item) => {
+                const Icon = item.icon;
+                const isActive = location.pathname === item.href;
 
-              return (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className={cn(
-                    "flex items-center space-x-2 transition-colors hover:text-foreground/80",
-                    isActive ? "text-foreground" : "text-foreground/60",
-                  )}
-                >
-                  <Icon className="h-4 w-4" />
-                  <span>{item.name}</span>
-                </Link>
-              );
-            })}
+                return (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    className={cn(
+                      "flex items-center space-x-2 transition-colors hover:text-foreground/80",
+                      isActive ? "text-foreground" : "text-foreground/60",
+                    )}
+                  >
+                    <Icon className="h-4 w-4" />
+                    <span>{item.name}</span>
+                  </Link>
+                );
+              })}
             </nav>
           </div>
 
