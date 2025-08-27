@@ -288,18 +288,6 @@ export default function Index() {
     }
   };
 
-  const getPriorityColor = (priority: string) => {
-    switch (priority) {
-      case "High":
-        return "text-red-600 bg-red-50";
-      case "Medium":
-        return "text-yellow-600 bg-yellow-50";
-      case "Low":
-        return "text-green-600 bg-green-50";
-      default:
-        return "text-gray-600 bg-gray-50";
-    }
-  };
 
   return (
     <div className="container mx-auto p-4 space-y-6">
