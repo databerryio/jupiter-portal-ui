@@ -32,9 +32,9 @@ export function PortalLayout({ children }: PortalLayoutProps) {
   const location = useLocation();
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="h-screen bg-background flex flex-col">
       {/* Header */}
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <header className="fixed top-0 left-0 right-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center justify-between">
           {/* Left Section - Logo, Brand and Navigation */}
           <div className="flex items-center space-x-8">
@@ -116,10 +116,10 @@ export function PortalLayout({ children }: PortalLayoutProps) {
       </header>
 
       {/* Main Content */}
-      <main className="flex-1">{children}</main>
+      <main className="flex-1 overflow-y-auto pt-16">{children}</main>
 
       {/* Footer */}
-      <footer className="border-t bg-muted/40">
+      <footer className="border-t bg-muted/40 flex-shrink-0">
         <div className="container flex flex-col items-center justify-between gap-4 py-6 md:h-16 md:flex-row md:py-0">
           <div className="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
             <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
