@@ -288,7 +288,7 @@ export default function Index() {
   };
 
   return (
-    <div className="container mx-auto p-4 space-y-6 max-w-none">
+    <div className="container mx-auto p-4 space-y-6">
       {/* Top Section - 4 Metric Areas */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {systemStats.map((stat, index) => {
@@ -328,8 +328,8 @@ export default function Index() {
 
       {/* Top-Left-Right Layout Structure */}
       <div className="flex flex-col md:flex-row gap-6 items-start">
-        {/* Left Section - Waterfall layout (75%+ width) */}
-        <div className="w-full md:flex-1 md:min-w-[75%] space-y-6">
+        {/* Left Section - Waterfall layout (flex-grow, ~75% width) */}
+        <div className="w-full md:flex-[3] md:min-w-0 space-y-6">
           {/* Recent Activity - First layer */}
           <Card className="h-fit">
             <CardHeader className="pb-4">
@@ -444,8 +444,8 @@ export default function Index() {
           </Card>
         </div>
 
-        {/* Right Section - Waterfall layout (25% width) */}
-        <div className="w-full md:w-1/4 md:flex-shrink-0 space-y-6">
+        {/* Right Section - Waterfall layout (~25% width) */}
+        <div className="w-full md:flex-[1] md:min-w-0 space-y-6">
           {/* Account Overview - First layer */}
           <Card className="h-fit">
             <CardHeader className="pb-3">
