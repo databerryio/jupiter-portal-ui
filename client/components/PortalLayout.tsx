@@ -35,19 +35,19 @@ export function PortalLayout({ children }: PortalLayoutProps) {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-16 items-center">
-          {/* Logo and Brand */}
-          <div className="flex items-center space-x-4">
+        <div className="container flex h-16 items-center justify-between">
+          {/* Left Section - Logo, Brand and Navigation */}
+          <div className="flex items-center space-x-8">
+            {/* Logo and Brand */}
             <div className="flex items-center space-x-2">
               <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
                 <Database className="h-5 w-5 text-primary-foreground" />
               </div>
               <span className="font-bold text-xl">Portal Console</span>
             </div>
-          </div>
 
-          {/* Navigation */}
-          <nav className="hidden md:flex items-center space-x-6 text-sm font-medium mx-6">
+            {/* Navigation */}
+            <nav className="hidden lg:flex items-center space-x-6 text-sm font-medium">
             {navigationItems.map((item) => {
               const Icon = item.icon;
               const isActive = location.pathname === item.href;
@@ -66,10 +66,11 @@ export function PortalLayout({ children }: PortalLayoutProps) {
                 </Link>
               );
             })}
-          </nav>
+            </nav>
+          </div>
 
-          {/* Right side actions */}
-          <div className="ml-auto flex items-center space-x-4">
+          {/* Right Section - Search, Notifications, User */}
+          <div className="flex items-center space-x-3">
             {/* Search */}
             <div className="hidden lg:flex">
               <div className="relative">
