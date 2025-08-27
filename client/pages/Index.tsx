@@ -526,8 +526,8 @@ export default function Index() {
           </Card>
         </div>
 
-        {/* System Monitoring - Fixed width sidebar */}
-        <div className="lg:w-80 lg:flex-shrink-0">
+        {/* System Monitoring - Compact section */}
+        <div className="lg:col-span-4">
           <Card>
             <CardHeader className="pb-4">
               <CardTitle className="flex items-center text-lg">
