@@ -252,35 +252,6 @@ const systemMonitoringAlerts = [
   },
 ];
 
-const pendingWorkOrders = [
-  {
-    id: 1,
-    title: "CRM Update",
-    priority: "High",
-    assignee: "DevOps",
-    dueDate: "Jan 15",
-    progress: 75,
-    icon: Wrench,
-  },
-  {
-    id: 2,
-    title: "DB Maintenance",
-    priority: "Medium",
-    assignee: "DBA Team",
-    dueDate: "Jan 20",
-    progress: 30,
-    icon: Database,
-  },
-  {
-    id: 3,
-    title: "Security Audit",
-    priority: "High",
-    assignee: "Security",
-    dueDate: "Jan 18",
-    progress: 60,
-    icon: Shield,
-  },
-];
 
 const accountDetails = {
   name: "Admin User",
