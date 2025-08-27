@@ -329,7 +329,7 @@ export default function Index() {
       </div>
 
       {/* 4-Unit Flexbox System - Auto-wrapping Layout with flush alignment */}
-      <div className="flex flex-wrap gap-6 items-start w-full">
+      <div className="flex flex-wrap items-start w-full" style={{ gap: '24px' }}>
         {/* Recent Activity - 3 units (75% width) */}
         <div className="w-full md:w-[calc(75%-18px)] flex-none">
           <Card className="h-fit">
