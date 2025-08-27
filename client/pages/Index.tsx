@@ -327,9 +327,9 @@ export default function Index() {
       </div>
 
       {/* Top-Left-Right Layout Structure */}
-      <div className="flex flex-col lg:flex-row gap-6 items-start">
+      <div className="flex flex-col md:flex-row gap-6 items-start">
         {/* Left Section - Waterfall layout (75%+ width) */}
-        <div className="w-full lg:flex-1 lg:min-w-[75%] space-y-6">
+        <div className="w-full md:flex-1 md:min-w-[75%] space-y-6">
           {/* Recent Activity - First layer */}
           <Card className="h-fit">
             <CardHeader className="pb-4">
@@ -445,7 +445,7 @@ export default function Index() {
         </div>
 
         {/* Right Section - Waterfall layout (25% width) */}
-        <div className="w-full lg:w-1/4 lg:flex-shrink-0 space-y-6">
+        <div className="w-full md:w-1/4 md:flex-shrink-0 space-y-6">
           {/* Account Overview - First layer */}
           <Card className="h-fit">
             <CardHeader className="pb-3">
