@@ -384,26 +384,30 @@ export default function Index() {
               </CardDescription>
             </CardHeader>
             <CardContent className="pb-4">
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                 {recentlyAccessed.map((item) => {
                   const Icon = item.icon;
                   return (
                     <Link key={item.id} to={item.href}>
-                      <div className="group p-3 rounded-lg border hover:border-primary transition-all hover:shadow-sm text-center">
-                        <div
-                          className={cn(
-                            "p-2 rounded-lg text-white mx-auto mb-2 w-fit group-hover:scale-105 transition-transform",
-                            item.color,
-                          )}
-                        >
-                          <Icon className="h-4 w-4" />
+                      <div className="group p-3 rounded-lg border hover:border-primary transition-all hover:shadow-sm">
+                        <div className="flex items-center space-x-3">
+                          <div
+                            className={cn(
+                              "p-2 rounded-lg text-white group-hover:scale-105 transition-transform flex-shrink-0",
+                              item.color,
+                            )}
+                          >
+                            <Icon className="h-4 w-4" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <h5 className="text-sm font-medium group-hover:text-primary transition-colors truncate">
+                              {item.name}
+                            </h5>
+                            <p className="text-xs text-muted-foreground">
+                              {item.lastAccessed}
+                            </p>
+                          </div>
                         </div>
-                        <h5 className="text-xs font-medium group-hover:text-primary transition-colors truncate mb-1">
-                          {item.name}
-                        </h5>
-                        <p className="text-xs text-muted-foreground">
-                          {item.lastAccessed}
-                        </p>
                       </div>
                     </Link>
                   );
