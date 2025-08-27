@@ -328,10 +328,10 @@ export default function Index() {
         })}
       </div>
 
-      {/* Fluid Layout Sections - Content-Driven Dynamic Sizing */}
-      <div className="grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-6 auto-rows-min items-start w-full">
-        {/* Recent Activity - Dynamically sized based on content */}
-        <div className="min-w-0 w-full flex-1">
+      {/* 4-Unit Grid System - Auto-wrapping Layout */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 auto-rows-min items-start">
+        {/* Recent Activity - 3 grid units */}
+        <div className="md:col-span-3">
           <Card className="h-fit">
             <CardHeader className="pb-4">
               <CardTitle className="flex items-center text-lg">
@@ -385,8 +385,8 @@ export default function Index() {
           </Card>
         </div>
 
-        {/* Account Overview - Compact, content-driven size */}
-        <div className="min-w-0 w-full md:w-auto md:min-w-[280px]">
+        {/* Account Overview - 1 grid unit */}
+        <div className="md:col-span-1">
           <Card className="h-fit">
             <CardHeader className="pb-3">
               <CardTitle className="flex items-center text-lg">
@@ -464,8 +464,8 @@ export default function Index() {
           </Card>
         </div>
 
-        {/* Products & Services - Dynamically sized based on content */}
-        <div className="min-w-0 w-full flex-1">
+        {/* Products & Services - 3 grid units */}
+        <div className="md:col-span-3">
           <Card className="h-fit">
             <CardHeader className="pb-4">
               <div className="flex items-center justify-between">
@@ -526,8 +526,8 @@ export default function Index() {
           </Card>
         </div>
 
-        {/* System Monitoring - Compact, content-driven size */}
-        <div className="min-w-0 w-full md:w-auto md:min-w-[280px]">
+        {/* System Monitoring - 1 grid unit */}
+        <div className="md:col-span-1">
           <Card className="h-fit">
             <CardHeader className="pb-4">
               <CardTitle className="flex items-center text-lg">
