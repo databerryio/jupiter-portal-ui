@@ -328,10 +328,10 @@ export default function Index() {
         })}
       </div>
 
-      {/* Second Row: Recent (3 units) + Account Overview (1 unit) */}
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-        {/* Recent Section - Horizontally Tiled (3 units) */}
-        <div className="lg:col-span-3">
+      {/* Second Row: Recent Activity and Account Overview - Fluid Layout */}
+      <div className="flex flex-col lg:flex-row gap-6">
+        {/* Recent Section - Takes most space */}
+        <div className="flex-1 lg:min-w-0">
           <Card>
             <CardHeader className="pb-4">
               <CardTitle className="flex items-center text-lg">
@@ -385,8 +385,8 @@ export default function Index() {
           </Card>
         </div>
 
-        {/* Simplified Account Overview (1 unit) */}
-        <div className="lg:col-span-1">
+        {/* Account Overview - Fixed width sidebar */}
+        <div className="lg:w-80 lg:flex-shrink-0">
           <Card>
             <CardHeader className="pb-3">
               <CardTitle className="flex items-center text-lg">
@@ -465,10 +465,10 @@ export default function Index() {
         </div>
       </div>
 
-      {/* Third Row: Products & Services (3 units) + System Monitoring (1 unit) */}
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-        {/* Products & Services (3 units) */}
-        <div className="lg:col-span-3">
+      {/* Third Row: Products & Services and System Monitoring - Fluid Layout */}
+      <div className="flex flex-col lg:flex-row gap-6">
+        {/* Products & Services - Takes most space */}
+        <div className="flex-1 lg:min-w-0">
           <Card>
             <CardHeader className="pb-4">
               <div className="flex items-center justify-between">
@@ -529,8 +529,8 @@ export default function Index() {
           </Card>
         </div>
 
-        {/* System Monitoring (1 unit) */}
-        <div className="lg:col-span-1">
+        {/* System Monitoring - Fixed width sidebar */}
+        <div className="lg:w-80 lg:flex-shrink-0">
           <Card>
             <CardHeader className="pb-4">
               <CardTitle className="flex items-center text-lg">
