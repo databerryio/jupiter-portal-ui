@@ -52,7 +52,8 @@ import {
   HardDrive,
   Cpu,
   Eye,
-  History
+  History,
+  ArrowRight
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -289,7 +290,9 @@ const accountDetails = {
   recentActivity: [
     "Updated user permissions",
     "Reviewed security logs",
-    "Approved system updates"
+    "Approved system updates",
+    "Generated monthly report",
+    "Configured new API keys"
   ]
 };
 
@@ -386,21 +389,29 @@ export default function Index() {
           </Card>
         </div>
 
-        {/* Products and Services with Logo Left, Name Right */}
+        {/* Enhanced Products and Services with Add Button and View All */}
         <div className="lg:col-span-3">
           <Card>
             <CardHeader className="pb-4">
-              <CardTitle className="flex items-center">
-                <Layers className="h-5 w-5 mr-2" />
-                Products & Services
-              </CardTitle>
-              <CardDescription>
-                Quick access to business applications and services
-              </CardDescription>
+              <div className="flex items-center justify-between">
+                <div>
+                  <CardTitle className="flex items-center">
+                    <Layers className="h-5 w-5 mr-2" />
+                    Products & Services
+                  </CardTitle>
+                  <CardDescription>
+                    Quick access to business applications and services
+                  </CardDescription>
+                </div>
+                <Button size="sm" className="flex items-center gap-2">
+                  <Plus className="h-4 w-4" />
+                  Add Product
+                </Button>
+              </div>
             </CardHeader>
             <CardContent className="pb-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                {productsAndServices.map((product) => {
+                {productsAndServices.slice(0, 6).map((product) => {
                   const Icon = product.icon;
                   
                   return (
@@ -423,73 +434,113 @@ export default function Index() {
                   );
                 })}
               </div>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
-
-      {/* Account Details */}
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-        <div className="lg:col-span-4">
-          <Card>
-            <CardHeader className="pb-3">
-              <CardTitle className="flex items-center text-lg">
-                <User className="h-4 w-4 mr-2" />
-                Account Overview
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="pb-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div className="flex items-center space-x-3">
-                  <div className="h-10 w-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-medium">
-                    {accountDetails.name.split(' ').map(n => n[0]).join('')}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h4 className="font-medium text-sm truncate">{accountDetails.name}</h4>
-                    <p className="text-xs text-muted-foreground truncate">{accountDetails.role}</p>
-                  </div>
-                </div>
-                
-                <div className="space-y-1 text-xs">
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Email</span>
-                    <span className="font-medium">{accountDetails.email}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Department</span>
-                    <span className="font-medium">{accountDetails.department}</span>
-                  </div>
-                </div>
-
-                <div className="space-y-1 text-xs">
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Status</span>
-                    <span className="px-2 py-1 bg-green-50 text-green-600 rounded-full text-xs font-medium">
-                      {accountDetails.accountStatus}
-                    </span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Last Login</span>
-                    <span className="font-medium">{accountDetails.lastLogin}</span>
-                  </div>
-                </div>
-
-                <div>
-                  <p className="text-xs font-medium text-muted-foreground mb-2">Recent Activity</p>
-                  <div className="space-y-1">
-                    {accountDetails.recentActivity.slice(0, 2).map((activity, index) => (
-                      <div key={index} className="flex items-center space-x-2">
-                        <div className="w-1 h-1 bg-primary rounded-full"></div>
-                        <span className="text-xs text-muted-foreground">{activity}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+              
+              {/* View All Link */}
+              <div className="mt-4 pt-4 border-t">
+                <Link to="/products-services" className="inline-flex items-center text-sm text-primary hover:underline">
+                  View all products & services
+                  <ArrowRight className="h-3 w-3 ml-1" />
+                </Link>
               </div>
             </CardContent>
           </Card>
         </div>
       </div>
+
+      {/* Revamped Account Overview */}
+      <Card>
+        <CardHeader className="pb-4">
+          <div className="flex items-center justify-between">
+            <CardTitle className="flex items-center text-lg">
+              <User className="h-5 w-5 mr-2" />
+              Account Overview
+            </CardTitle>
+            <Button variant="outline" size="sm">
+              <Edit3 className="h-4 w-4 mr-2" />
+              Edit Profile
+            </Button>
+          </div>
+        </CardHeader>
+        <CardContent className="pb-4">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {/* Profile Section */}
+            <div className="flex flex-col space-y-4">
+              <div className="flex items-center space-x-4">
+                <div className="h-16 w-16 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xl font-bold">
+                  {accountDetails.name.split(' ').map(n => n[0]).join('')}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-semibold text-lg truncate">{accountDetails.name}</h3>
+                  <p className="text-sm text-muted-foreground truncate">{accountDetails.role}</p>
+                  <p className="text-sm text-muted-foreground">{accountDetails.department}</p>
+                </div>
+              </div>
+              
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-muted-foreground">Status</span>
+                  <span className="px-3 py-1 bg-green-50 text-green-600 rounded-full text-sm font-medium flex items-center">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+                    {accountDetails.accountStatus}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-muted-foreground">Last Login</span>
+                  <span className="text-sm font-medium">{accountDetails.lastLogin}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Contact Information */}
+            <div className="space-y-4">
+              <h4 className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Contact Information</h4>
+              <div className="space-y-3">
+                <div className="flex items-center space-x-3">
+                  <Mail className="h-4 w-4 text-muted-foreground" />
+                  <div>
+                    <p className="text-sm font-medium">{accountDetails.email}</p>
+                    <p className="text-xs text-muted-foreground">Primary email</p>
+                  </div>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <MapPin className="h-4 w-4 text-muted-foreground" />
+                  <div>
+                    <p className="text-sm font-medium">San Francisco, CA</p>
+                    <p className="text-xs text-muted-foreground">Location</p>
+                  </div>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Phone className="h-4 w-4 text-muted-foreground" />
+                  <div>
+                    <p className="text-sm font-medium">+1 (555) 123-4567</p>
+                    <p className="text-xs text-muted-foreground">Phone</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Recent Activity */}
+            <div className="space-y-4">
+              <h4 className="font-medium text-sm text-muted-foreground uppercase tracking-wide">Recent Activity</h4>
+              <div className="space-y-2">
+                {accountDetails.recentActivity.slice(0, 5).map((activity, index) => (
+                  <div key={index} className="flex items-start space-x-3 p-2 rounded-md hover:bg-muted/50 transition-colors">
+                    <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
+                    <div className="flex-1">
+                      <p className="text-sm">{activity}</p>
+                      <p className="text-xs text-muted-foreground">{index + 1} hour{index !== 0 ? 's' : ''} ago</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <Link to="/account/activity" className="inline-flex items-center text-sm text-primary hover:underline">
+                View all activity
+                <ArrowRight className="h-3 w-3 ml-1" />
+              </Link>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
 
       {/* Bottom Grid: System Monitoring (3 units) + Work Orders (1 unit) */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
