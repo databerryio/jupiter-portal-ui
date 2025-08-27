@@ -331,7 +331,7 @@ export default function Index() {
       {/* Fluid Layout Sections - Content-Driven Dynamic Sizing */}
       <div className="grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-6 auto-rows-min items-start w-full">
         {/* Recent Activity - Dynamically sized based on content */}
-        <div className="min-w-0 w-full lg:w-auto lg:min-w-[500px] lg:max-w-[800px]">
+        <div className="min-w-0 w-full flex-1">
           <Card className="h-fit">
             <CardHeader className="pb-4">
               <CardTitle className="flex items-center text-lg">
@@ -386,7 +386,7 @@ export default function Index() {
         </div>
 
         {/* Account Overview - Compact, content-driven size */}
-        <div className="min-w-0 w-full lg:w-auto lg:min-w-[280px] lg:max-w-[350px]">
+        <div className="min-w-0 w-full md:w-auto md:min-w-[280px]">
           <Card className="h-fit">
             <CardHeader className="pb-3">
               <CardTitle className="flex items-center text-lg">
@@ -465,7 +465,7 @@ export default function Index() {
         </div>
 
         {/* Products & Services - Dynamically sized based on content */}
-        <div className="min-w-0 w-full lg:w-auto lg:min-w-[500px] lg:max-w-[800px]">
+        <div className="min-w-0 w-full flex-1">
           <Card className="h-fit">
             <CardHeader className="pb-4">
               <div className="flex items-center justify-between">
@@ -527,7 +527,7 @@ export default function Index() {
         </div>
 
         {/* System Monitoring - Compact, content-driven size */}
-        <div className="min-w-0 w-full lg:w-auto lg:min-w-[280px] lg:max-w-[350px]">
+        <div className="min-w-0 w-full md:w-auto md:min-w-[280px]">
           <Card className="h-fit">
             <CardHeader className="pb-4">
               <CardTitle className="flex items-center text-lg">
