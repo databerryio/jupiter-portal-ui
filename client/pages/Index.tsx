@@ -53,10 +53,16 @@ import {
   Cpu,
   Eye,
   History,
-  ArrowRight
+  ArrowRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
 // Mock data for the dashboard
@@ -67,7 +73,7 @@ const systemStats = [
     change: "+2 from last month",
     trend: "up",
     icon: Server,
-    color: "text-blue-600"
+    color: "text-blue-600",
   },
   {
     title: "Total Users",
@@ -75,7 +81,7 @@ const systemStats = [
     change: "+18% from last month",
     trend: "up",
     icon: Users,
-    color: "text-green-600"
+    color: "text-green-600",
   },
   {
     title: "Security Score",
@@ -83,7 +89,7 @@ const systemStats = [
     change: "+2% from last week",
     trend: "up",
     icon: Shield,
-    color: "text-emerald-600"
+    color: "text-emerald-600",
   },
   {
     title: "System Health",
@@ -91,8 +97,8 @@ const systemStats = [
     change: "Stable",
     trend: "stable",
     icon: Activity,
-    color: "text-green-600"
-  }
+    color: "text-green-600",
+  },
 ];
 
 const productsAndServices = [
@@ -101,57 +107,57 @@ const productsAndServices = [
     name: "Customer CRM",
     icon: Users,
     color: "bg-blue-500",
-    href: "/crm"
+    href: "/crm",
   },
   {
     id: 2,
     name: "E-commerce Platform",
     icon: ShoppingCart,
     color: "bg-green-500",
-    href: "/ecommerce"
+    href: "/ecommerce",
   },
   {
     id: 3,
     name: "Analytics Suite",
     icon: BarChart3,
     color: "bg-purple-500",
-    href: "/analytics"
+    href: "/analytics",
   },
   {
     id: 4,
     name: "Communication Hub",
     icon: Mail,
     color: "bg-orange-500",
-    href: "/communication"
+    href: "/communication",
   },
   {
     id: 5,
     name: "Project Management",
     icon: Briefcase,
     color: "bg-yellow-500",
-    href: "/projects"
+    href: "/projects",
   },
   {
     id: 6,
     name: "Cloud Storage",
     icon: Cloud,
     color: "bg-indigo-500",
-    href: "/storage"
+    href: "/storage",
   },
   {
     id: 7,
     name: "Security Center",
     icon: Shield,
     color: "bg-red-500",
-    href: "/security"
+    href: "/security",
   },
   {
     id: 8,
     name: "API Gateway",
     icon: Globe,
     color: "bg-teal-500",
-    href: "/api"
-  }
+    href: "/api",
+  },
 ];
 
 const recentlyAccessed = [
@@ -162,7 +168,7 @@ const recentlyAccessed = [
     lastAccessed: "2h ago",
     icon: Users,
     color: "bg-blue-500",
-    href: "/crm/dashboard"
+    href: "/crm/dashboard",
   },
   {
     id: 2,
@@ -171,7 +177,7 @@ const recentlyAccessed = [
     lastAccessed: "4h ago",
     icon: BarChart3,
     color: "bg-purple-500",
-    href: "/analytics/main"
+    href: "/analytics/main",
   },
   {
     id: 3,
@@ -180,7 +186,7 @@ const recentlyAccessed = [
     lastAccessed: "6h ago",
     icon: Users,
     color: "bg-green-500",
-    href: "/admin/users"
+    href: "/admin/users",
   },
   {
     id: 4,
@@ -189,7 +195,7 @@ const recentlyAccessed = [
     lastAccessed: "1d ago",
     icon: Settings,
     color: "bg-gray-500",
-    href: "/settings/system"
+    href: "/settings/system",
   },
   {
     id: 5,
@@ -198,7 +204,7 @@ const recentlyAccessed = [
     lastAccessed: "2d ago",
     icon: Shield,
     color: "bg-red-500",
-    href: "/security"
+    href: "/security",
   },
   {
     id: 6,
@@ -207,8 +213,8 @@ const recentlyAccessed = [
     lastAccessed: "3d ago",
     icon: Globe,
     color: "bg-teal-500",
-    href: "/api"
-  }
+    href: "/api",
+  },
 ];
 
 const systemMonitoringAlerts = [
@@ -218,7 +224,7 @@ const systemMonitoringAlerts = [
     message: "Query response time increased",
     severity: "warning",
     timestamp: "5m ago",
-    icon: Database
+    icon: Database,
   },
   {
     id: 2,
@@ -226,7 +232,7 @@ const systemMonitoringAlerts = [
     message: "Main storage at 82%",
     severity: "warning",
     timestamp: "15m ago",
-    icon: HardDrive
+    icon: HardDrive,
   },
   {
     id: 3,
@@ -234,7 +240,7 @@ const systemMonitoringAlerts = [
     message: "All systems operational",
     severity: "success",
     timestamp: "30m ago",
-    icon: Wifi
+    icon: Wifi,
   },
   {
     id: 4,
@@ -242,8 +248,8 @@ const systemMonitoringAlerts = [
     message: "Within normal range",
     severity: "success",
     timestamp: "1h ago",
-    icon: Cpu
-  }
+    icon: Cpu,
+  },
 ];
 
 const pendingWorkOrders = [
@@ -254,7 +260,7 @@ const pendingWorkOrders = [
     assignee: "DevOps",
     dueDate: "Jan 15",
     progress: 75,
-    icon: Wrench
+    icon: Wrench,
   },
   {
     id: 2,
@@ -263,7 +269,7 @@ const pendingWorkOrders = [
     assignee: "DBA Team",
     dueDate: "Jan 20",
     progress: 30,
-    icon: Database
+    icon: Database,
   },
   {
     id: 3,
@@ -272,8 +278,8 @@ const pendingWorkOrders = [
     assignee: "Security",
     dueDate: "Jan 18",
     progress: 60,
-    icon: Shield
-  }
+    icon: Shield,
+  },
 ];
 
 const accountDetails = {
@@ -286,8 +292,8 @@ const accountDetails = {
   recentActivity: [
     "Updated user permissions",
     "Reviewed security logs",
-    "Approved system updates"
-  ]
+    "Approved system updates",
+  ],
 };
 
 export default function Index() {
@@ -300,19 +306,27 @@ export default function Index() {
 
   const getSeverityColor = (severity: string) => {
     switch (severity) {
-      case "error": return "text-red-600 bg-red-50 border-red-200";
-      case "warning": return "text-yellow-700 bg-yellow-50 border-yellow-200";
-      case "success": return "text-green-600 bg-green-50 border-green-200";
-      default: return "text-gray-600 bg-gray-50 border-gray-200";
+      case "error":
+        return "text-red-600 bg-red-50 border-red-200";
+      case "warning":
+        return "text-yellow-700 bg-yellow-50 border-yellow-200";
+      case "success":
+        return "text-green-600 bg-green-50 border-green-200";
+      default:
+        return "text-gray-600 bg-gray-50 border-gray-200";
     }
   };
 
   const getPriorityColor = (priority: string) => {
     switch (priority) {
-      case "High": return "text-red-600 bg-red-50";
-      case "Medium": return "text-yellow-600 bg-yellow-50";
-      case "Low": return "text-green-600 bg-green-50";
-      default: return "text-gray-600 bg-gray-50";
+      case "High":
+        return "text-red-600 bg-red-50";
+      case "Medium":
+        return "text-yellow-600 bg-yellow-50";
+      case "Low":
+        return "text-green-600 bg-green-50";
+      default:
+        return "text-gray-600 bg-gray-50";
     }
   };
 
@@ -327,13 +341,21 @@ export default function Index() {
               <CardContent className="p-4">
                 <div className="flex items-center justify-between">
                   <div className="space-y-1">
-                    <p className="text-sm font-medium text-muted-foreground">{stat.title}</p>
+                    <p className="text-sm font-medium text-muted-foreground">
+                      {stat.title}
+                    </p>
                     <p className="text-2xl font-bold">{stat.value}</p>
-                    <p className={cn(
-                      "text-xs flex items-center",
-                      stat.trend === "up" ? "text-green-600" : "text-muted-foreground"
-                    )}>
-                      {stat.trend === "up" && <TrendingUp className="h-3 w-3 mr-1" />}
+                    <p
+                      className={cn(
+                        "text-xs flex items-center",
+                        stat.trend === "up"
+                          ? "text-green-600"
+                          : "text-muted-foreground",
+                      )}
+                    >
+                      {stat.trend === "up" && (
+                        <TrendingUp className="h-3 w-3 mr-1" />
+                      )}
                       {stat.change}
                     </p>
                   </div>
@@ -368,20 +390,30 @@ export default function Index() {
                   return (
                     <Link key={item.id} to={item.href}>
                       <div className="group p-3 rounded-lg border hover:border-primary transition-all hover:shadow-sm text-center">
-                        <div className={cn("p-2 rounded-lg text-white mx-auto mb-2 w-fit group-hover:scale-105 transition-transform", item.color)}>
+                        <div
+                          className={cn(
+                            "p-2 rounded-lg text-white mx-auto mb-2 w-fit group-hover:scale-105 transition-transform",
+                            item.color,
+                          )}
+                        >
                           <Icon className="h-4 w-4" />
                         </div>
                         <h5 className="text-xs font-medium group-hover:text-primary transition-colors truncate mb-1">
                           {item.name}
                         </h5>
-                        <p className="text-xs text-muted-foreground">{item.lastAccessed}</p>
+                        <p className="text-xs text-muted-foreground">
+                          {item.lastAccessed}
+                        </p>
                       </div>
                     </Link>
                   );
                 })}
               </div>
               <div className="mt-4 pt-4 border-t">
-                <Link to="/recent" className="inline-flex items-center text-sm text-primary hover:underline">
+                <Link
+                  to="/recent"
+                  className="inline-flex items-center text-sm text-primary hover:underline"
+                >
                   View all recent activity
                   <ArrowRight className="h-3 w-3 ml-1" />
                 </Link>
@@ -403,14 +435,21 @@ export default function Index() {
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
                   <div className="h-10 w-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-medium">
-                    {accountDetails.name.split(' ').map(n => n[0]).join('')}
+                    {accountDetails.name
+                      .split(" ")
+                      .map((n) => n[0])
+                      .join("")}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h4 className="font-medium text-sm truncate">{accountDetails.name}</h4>
-                    <p className="text-xs text-muted-foreground truncate">{accountDetails.role}</p>
+                    <h4 className="font-medium text-sm truncate">
+                      {accountDetails.name}
+                    </h4>
+                    <p className="text-xs text-muted-foreground truncate">
+                      {accountDetails.role}
+                    </p>
                   </div>
                 </div>
-                
+
                 <div className="space-y-2 text-xs">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Status</span>
@@ -420,23 +459,36 @@ export default function Index() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Login</span>
-                    <span className="font-medium">{accountDetails.lastLogin}</span>
+                    <span className="font-medium">
+                      {accountDetails.lastLogin}
+                    </span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Email</span>
-                    <span className="font-medium truncate ml-2">{accountDetails.email}</span>
+                    <span className="font-medium truncate ml-2">
+                      {accountDetails.email}
+                    </span>
                   </div>
                 </div>
 
                 <div className="border-t pt-3">
-                  <p className="text-xs font-medium text-muted-foreground mb-2">Recent Activity</p>
+                  <p className="text-xs font-medium text-muted-foreground mb-2">
+                    Recent Activity
+                  </p>
                   <div className="space-y-1">
-                    {accountDetails.recentActivity.slice(0, 2).map((activity, index) => (
-                      <div key={index} className="flex items-center space-x-2">
-                        <div className="w-1 h-1 bg-primary rounded-full"></div>
-                        <span className="text-xs text-muted-foreground truncate">{activity}</span>
-                      </div>
-                    ))}
+                    {accountDetails.recentActivity
+                      .slice(0, 2)
+                      .map((activity, index) => (
+                        <div
+                          key={index}
+                          className="flex items-center space-x-2"
+                        >
+                          <div className="w-1 h-1 bg-primary rounded-full"></div>
+                          <span className="text-xs text-muted-foreground truncate">
+                            {activity}
+                          </span>
+                        </div>
+                      ))}
                   </div>
                 </div>
 
@@ -476,12 +528,17 @@ export default function Index() {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                 {productsAndServices.slice(0, 6).map((product) => {
                   const Icon = product.icon;
-                  
+
                   return (
                     <Link key={product.id} to={product.href}>
                       <div className="group p-3 rounded-lg border hover:border-primary transition-all hover:shadow-sm">
                         <div className="flex items-center space-x-3">
-                          <div className={cn("p-2 rounded-lg text-white group-hover:scale-105 transition-transform", product.color)}>
+                          <div
+                            className={cn(
+                              "p-2 rounded-lg text-white group-hover:scale-105 transition-transform",
+                              product.color,
+                            )}
+                          >
                             <Icon className="h-5 w-5" />
                           </div>
                           <div className="flex-1 min-w-0">
@@ -495,9 +552,12 @@ export default function Index() {
                   );
                 })}
               </div>
-              
+
               <div className="mt-4 pt-4 border-t">
-                <Link to="/products-services" className="inline-flex items-center text-sm text-primary hover:underline">
+                <Link
+                  to="/products-services"
+                  className="inline-flex items-center text-sm text-primary hover:underline"
+                >
                   View all products & services
                   <ArrowRight className="h-3 w-3 ml-1" />
                 </Link>
@@ -523,13 +583,25 @@ export default function Index() {
                 {systemMonitoringAlerts.slice(0, 4).map((alert) => {
                   const Icon = alert.icon;
                   return (
-                    <div key={alert.id} className={cn("p-2 rounded-lg border", getSeverityColor(alert.severity))}>
+                    <div
+                      key={alert.id}
+                      className={cn(
+                        "p-2 rounded-lg border",
+                        getSeverityColor(alert.severity),
+                      )}
+                    >
                       <div className="flex items-start space-x-2">
                         <Icon className="h-3 w-3 mt-0.5" />
                         <div className="flex-1 min-w-0">
-                          <h4 className="font-medium text-xs truncate">{alert.title}</h4>
-                          <p className="text-xs text-muted-foreground truncate">{alert.message}</p>
-                          <p className="text-xs text-muted-foreground">{alert.timestamp}</p>
+                          <h4 className="font-medium text-xs truncate">
+                            {alert.title}
+                          </h4>
+                          <p className="text-xs text-muted-foreground truncate">
+                            {alert.message}
+                          </p>
+                          <p className="text-xs text-muted-foreground">
+                            {alert.timestamp}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -537,7 +609,10 @@ export default function Index() {
                 })}
               </div>
               <div className="mt-4 pt-4 border-t">
-                <Link to="/monitoring" className="text-xs text-primary hover:underline">
+                <Link
+                  to="/monitoring"
+                  className="text-xs text-primary hover:underline"
+                >
                   View all alerts
                 </Link>
               </div>
@@ -562,37 +637,50 @@ export default function Index() {
             {pendingWorkOrders.map((order) => {
               const Icon = order.icon;
               return (
-                <div key={order.id} className="p-4 border rounded-lg hover:border-primary transition-colors">
+                <div
+                  key={order.id}
+                  className="p-4 border rounded-lg hover:border-primary transition-colors"
+                >
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center space-x-2">
                       <Icon className="h-4 w-4" />
                       <h4 className="font-medium text-sm">{order.title}</h4>
                     </div>
-                    <span className={cn("px-2 py-1 rounded-full text-xs font-medium", getPriorityColor(order.priority))}>
+                    <span
+                      className={cn(
+                        "px-2 py-1 rounded-full text-xs font-medium",
+                        getPriorityColor(order.priority),
+                      )}
+                    >
                       {order.priority}
                     </span>
                   </div>
-                  
+
                   <div className="space-y-2 text-sm text-muted-foreground mb-3">
                     <div>Assignee: {order.assignee}</div>
                     <div>Due: {order.dueDate}</div>
                   </div>
-                  
+
                   <div className="flex items-center space-x-2">
                     <div className="flex-1 bg-muted rounded-full h-2">
-                      <div 
-                        className="bg-primary h-2 rounded-full transition-all" 
+                      <div
+                        className="bg-primary h-2 rounded-full transition-all"
                         style={{ width: `${order.progress}%` }}
                       ></div>
                     </div>
-                    <span className="text-sm text-muted-foreground">{order.progress}%</span>
+                    <span className="text-sm text-muted-foreground">
+                      {order.progress}%
+                    </span>
                   </div>
                 </div>
               );
             })}
           </div>
           <div className="mt-4 pt-4 border-t">
-            <Link to="/work-orders" className="text-sm text-primary hover:underline">
+            <Link
+              to="/work-orders"
+              className="text-sm text-primary hover:underline"
+            >
               View all work orders
             </Link>
           </div>

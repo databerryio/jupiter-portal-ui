@@ -9,7 +9,7 @@ export default function Administration() {
     "System-wide security settings",
     "Multi-factor authentication setup",
     "API key and token management",
-    "Security incident response tools"
+    "Security incident response tools",
   ];
 
   return (

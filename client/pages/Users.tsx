@@ -9,7 +9,7 @@ export default function UsersPage() {
     "Bulk user operations and imports",
     "Single sign-on (SSO) integration",
     "User onboarding and offboarding workflows",
-    "Access request and approval system"
+    "Access request and approval system",
   ];
 
   return (

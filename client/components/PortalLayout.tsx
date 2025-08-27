@@ -1,16 +1,16 @@
 import { ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { 
-  Home, 
-  Settings, 
-  Users, 
-  Database, 
-  Shield, 
-  BarChart3, 
+import {
+  Home,
+  Settings,
+  Users,
+  Database,
+  Shield,
+  BarChart3,
   Bell,
   Search,
   ChevronDown,
-  Menu
+  Menu,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -51,14 +51,14 @@ export function PortalLayout({ children }: PortalLayoutProps) {
             {navigationItems.map((item) => {
               const Icon = item.icon;
               const isActive = location.pathname === item.href;
-              
+
               return (
                 <Link
                   key={item.name}
                   to={item.href}
                   className={cn(
                     "flex items-center space-x-2 transition-colors hover:text-foreground/80",
-                    isActive ? "text-foreground" : "text-foreground/60"
+                    isActive ? "text-foreground" : "text-foreground/60",
                   )}
                 >
                   <Icon className="h-4 w-4" />
@@ -94,7 +94,9 @@ export function PortalLayout({ children }: PortalLayoutProps) {
             <div className="flex items-center space-x-2">
               <div className="hidden md:block text-right">
                 <div className="text-sm font-medium">Admin User</div>
-                <div className="text-xs text-muted-foreground">admin@portal.com</div>
+                <div className="text-xs text-muted-foreground">
+                  admin@portal.com
+                </div>
               </div>
               <Button variant="ghost" size="icon">
                 <div className="h-8 w-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-medium">
@@ -113,9 +115,7 @@ export function PortalLayout({ children }: PortalLayoutProps) {
       </header>
 
       {/* Main Content */}
-      <main className="flex-1">
-        {children}
-      </main>
+      <main className="flex-1">{children}</main>
 
       {/* Footer */}
       <footer className="border-t bg-muted/40">

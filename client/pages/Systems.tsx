@@ -9,7 +9,7 @@ export default function Systems() {
     "System configuration management",
     "Integration workflow builder",
     "System dependency mapping",
-    "Performance metrics and alerting"
+    "Performance metrics and alerting",
   ];
 
   return (

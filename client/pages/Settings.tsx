@@ -9,7 +9,7 @@ export default function SettingsPage() {
     "Integration and API configurations",
     "Backup and recovery settings",
     "Performance and optimization tuning",
-    "Language and localization options"
+    "Language and localization options",
   ];
 
   return (

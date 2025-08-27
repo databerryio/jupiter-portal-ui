@@ -9,7 +9,7 @@ export default function Analytics() {
     "Automated reporting and alerts",
     "Trend analysis and forecasting",
     "Cross-system analytics correlation",
-    "Export capabilities for external tools"
+    "Export capabilities for external tools",
   ];
 
   return (
