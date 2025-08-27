@@ -39,7 +39,20 @@ import {
   CheckSquare,
   AlertCircle,
   Filter,
-  Search
+  Search,
+  Play,
+  Pause,
+  MoreHorizontal,
+  ExternalLink,
+  Wrench,
+  MonitorSpeaker,
+  FileX,
+  TrendingDown,
+  Wifi,
+  HardDrive,
+  Cpu,
+  Eye,
+  History
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -72,12 +85,12 @@ const systemStats = [
     color: "text-emerald-600"
   },
   {
-    title: "Revenue",
-    value: "$847K",
-    change: "+12% from last month",
-    trend: "up",
-    icon: DollarSign,
-    color: "text-purple-600"
+    title: "System Health",
+    value: "99.2%",
+    change: "Stable",
+    trend: "stable",
+    icon: Activity,
+    color: "text-green-600"
   }
 ];
 
@@ -91,7 +104,12 @@ const productsAndServices = [
     revenue: "$245K",
     icon: Users,
     color: "bg-blue-500",
-    description: "Complete customer relationship management platform"
+    description: "Complete customer relationship management platform",
+    quickActions: [
+      { name: "Dashboard", icon: BarChart3, href: "/crm/dashboard" },
+      { name: "Add Contact", icon: Plus, href: "/crm/contacts/new" },
+      { name: "Reports", icon: FileText, href: "/crm/reports" }
+    ]
   },
   {
     id: 2,
@@ -102,7 +120,12 @@ const productsAndServices = [
     revenue: "$387K",
     icon: ShoppingCart,
     color: "bg-green-500",
-    description: "Integrated online store and inventory management"
+    description: "Integrated online store and inventory management",
+    quickActions: [
+      { name: "Store Admin", icon: Settings, href: "/ecommerce/admin" },
+      { name: "Orders", icon: ShoppingCart, href: "/ecommerce/orders" },
+      { name: "Inventory", icon: Database, href: "/ecommerce/inventory" }
+    ]
   },
   {
     id: 3,
@@ -113,7 +136,12 @@ const productsAndServices = [
     revenue: "$156K",
     icon: BarChart3,
     color: "bg-purple-500",
-    description: "Advanced business intelligence and reporting"
+    description: "Advanced business intelligence and reporting",
+    quickActions: [
+      { name: "Dashboards", icon: PieChart, href: "/analytics/dashboards" },
+      { name: "Reports", icon: FileText, href: "/analytics/reports" },
+      { name: "Data Sources", icon: Database, href: "/analytics/sources" }
+    ]
   },
   {
     id: 4,
@@ -124,7 +152,12 @@ const productsAndServices = [
     revenue: "$98K",
     icon: Mail,
     color: "bg-orange-500",
-    description: "Unified messaging and communication platform"
+    description: "Unified messaging and communication platform",
+    quickActions: [
+      { name: "Messages", icon: Mail, href: "/comm/messages" },
+      { name: "Channels", icon: Globe, href: "/comm/channels" },
+      { name: "Settings", icon: Settings, href: "/comm/settings" }
+    ]
   },
   {
     id: 5,
@@ -135,7 +168,12 @@ const productsAndServices = [
     revenue: "$67K",
     icon: Briefcase,
     color: "bg-yellow-500",
-    description: "Task tracking and project collaboration tools"
+    description: "Task tracking and project collaboration tools",
+    quickActions: [
+      { name: "Projects", icon: Briefcase, href: "/projects" },
+      { name: "Tasks", icon: CheckSquare, href: "/projects/tasks" },
+      { name: "Calendar", icon: Calendar, href: "/projects/calendar" }
+    ]
   },
   {
     id: 6,
@@ -146,55 +184,133 @@ const productsAndServices = [
     revenue: "$123K",
     icon: Cloud,
     color: "bg-indigo-500",
-    description: "Secure file storage and sharing solution"
+    description: "Secure file storage and sharing solution",
+    quickActions: [
+      { name: "Files", icon: FileText, href: "/storage/files" },
+      { name: "Sharing", icon: Users, href: "/storage/sharing" },
+      { name: "Security", icon: Shield, href: "/storage/security" }
+    ]
   }
 ];
 
-const pendingTasks = [
+const recentlyAccessed = [
   {
     id: 1,
-    title: "Complete Q4 Security Audit",
-    priority: "high",
-    dueDate: "2024-01-15",
-    assignee: "Security Team",
-    category: "Security",
-    progress: 75
+    name: "Customer CRM",
+    type: "Application",
+    lastAccessed: "2 hours ago",
+    icon: Users,
+    color: "bg-blue-500",
+    href: "/crm/dashboard"
   },
   {
     id: 2,
-    title: "Update User Access Permissions",
-    priority: "medium",
-    dueDate: "2024-01-20",
-    assignee: "Admin Team",
-    category: "Administration",
-    progress: 30
+    name: "Analytics Dashboard",
+    type: "Dashboard",
+    lastAccessed: "4 hours ago",
+    icon: BarChart3,
+    color: "bg-purple-500",
+    href: "/analytics/main"
   },
   {
     id: 3,
-    title: "Deploy New CRM Features",
-    priority: "high",
-    dueDate: "2024-01-18",
-    assignee: "Development Team",
-    category: "Development",
-    progress: 90
+    name: "User Management",
+    type: "Admin Tool",
+    lastAccessed: "6 hours ago",
+    icon: Users,
+    color: "bg-green-500",
+    href: "/admin/users"
   },
   {
     id: 4,
-    title: "Backup Database Systems",
-    priority: "medium",
-    dueDate: "2024-01-25",
-    assignee: "IT Operations",
-    category: "Maintenance",
-    progress: 0
+    name: "System Settings",
+    type: "Configuration",
+    lastAccessed: "1 day ago",
+    icon: Settings,
+    color: "bg-gray-500",
+    href: "/settings/system"
+  }
+];
+
+const systemMonitoringAlerts = [
+  {
+    id: 1,
+    title: "Database Performance",
+    message: "Query response time increased by 15%",
+    severity: "warning",
+    timestamp: "5 minutes ago",
+    source: "Database Monitor",
+    icon: Database
   },
   {
-    id: 5,
-    title: "Review Analytics Reports",
-    priority: "low",
-    dueDate: "2024-01-30",
-    assignee: "Analytics Team",
-    category: "Reporting",
-    progress: 60
+    id: 2,
+    title: "Storage Capacity",
+    message: "Main storage at 82% capacity",
+    severity: "warning",
+    timestamp: "15 minutes ago",
+    source: "Storage Monitor",
+    icon: HardDrive
+  },
+  {
+    id: 3,
+    title: "Network Connectivity",
+    message: "All systems operational",
+    severity: "success",
+    timestamp: "30 minutes ago",
+    source: "Network Monitor",
+    icon: Wifi
+  },
+  {
+    id: 4,
+    title: "CPU Usage",
+    message: "Average CPU usage within normal range",
+    severity: "success",
+    timestamp: "1 hour ago",
+    source: "System Monitor",
+    icon: Cpu
+  }
+];
+
+const pendingWorkOrders = [
+  {
+    id: 1,
+    title: "CRM System Update",
+    priority: "High",
+    assignee: "DevOps Team",
+    dueDate: "Jan 15, 2024",
+    progress: 75,
+    type: "Update",
+    icon: Wrench
+  },
+  {
+    id: 2,
+    title: "Database Maintenance",
+    priority: "Medium",
+    assignee: "DBA Team",
+    dueDate: "Jan 20, 2024",
+    progress: 30,
+    type: "Maintenance",
+    icon: Database
+  },
+  {
+    id: 3,
+    title: "Security Audit",
+    priority: "High",
+    assignee: "Security Team",
+    dueDate: "Jan 18, 2024",
+    progress: 60,
+    type: "Audit",
+    icon: Shield
+  },
+  {
+    id: 4,
+    title: "Backup Verification",
+    priority: "Low",
+    assignee: "IT Operations",
+    dueDate: "Jan 25, 2024",
+    progress: 10,
+    type: "Verification",
+    icon: CheckCircle
   }
 ];
 
@@ -205,41 +321,39 @@ const accountDetails = {
   department: "IT Operations",
   location: "San Francisco, CA",
   phone: "+1 (555) 123-4567",
-  lastLogin: "2024-01-10 14:30",
+  lastLogin: "Today, 2:30 PM",
   accountStatus: "Active",
-  permissions: ["Full Access", "User Management", "System Configuration"]
+  permissions: ["Full Access", "User Management", "System Configuration"],
+  recentActivity: [
+    "Updated user permissions",
+    "Reviewed security logs",
+    "Approved system updates"
+  ]
 };
-
-const defaultShortcuts = [
-  { id: 1, name: "Add New System", icon: Plus, href: "/systems/new", color: "bg-blue-500" },
-  { id: 2, name: "User Management", icon: Users, href: "/users", color: "bg-purple-500" },
-  { id: 3, name: "Security Audit", icon: Shield, href: "/admin/security", color: "bg-green-500" },
-  { id: 4, name: "System Health", icon: Activity, href: "/systems/health", color: "bg-orange-500" },
-  { id: 5, name: "Analytics", icon: BarChart3, href: "/analytics", color: "bg-indigo-500" },
-  { id: 6, name: "Settings", icon: Settings, href: "/settings", color: "bg-gray-500" }
-];
 
 export default function Index() {
   const [isLoading, setIsLoading] = useState(false);
-  const [shortcuts, setShortcuts] = useState(defaultShortcuts);
-  const [isEditingShortcuts, setIsEditingShortcuts] = useState(false);
-  const [taskFilter, setTaskFilter] = useState("all");
+  const [expandedProduct, setExpandedProduct] = useState<number | null>(null);
 
   const handleRefresh = () => {
     setIsLoading(true);
     setTimeout(() => setIsLoading(false), 1000);
   };
 
-  const filteredTasks = pendingTasks.filter(task => {
-    if (taskFilter === "all") return true;
-    return task.priority === taskFilter;
-  });
+  const getSeverityColor = (severity: string) => {
+    switch (severity) {
+      case "error": return "text-red-600 bg-red-50 border-red-200";
+      case "warning": return "text-yellow-700 bg-yellow-50 border-yellow-200";
+      case "success": return "text-green-600 bg-green-50 border-green-200";
+      default: return "text-gray-600 bg-gray-50 border-gray-200";
+    }
+  };
 
   const getPriorityColor = (priority: string) => {
     switch (priority) {
-      case "high": return "text-red-600 bg-red-50";
-      case "medium": return "text-yellow-600 bg-yellow-50";
-      case "low": return "text-green-600 bg-green-50";
+      case "High": return "text-red-600 bg-red-50";
+      case "Medium": return "text-yellow-600 bg-yellow-50";
+      case "Low": return "text-green-600 bg-green-50";
       default: return "text-gray-600 bg-gray-50";
     }
   };
@@ -254,7 +368,7 @@ export default function Index() {
   };
 
   return (
-    <div className="container mx-auto p-6 space-y-8">
+    <div className="container mx-auto p-4 space-y-6">
       {/* Header */}
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
         <div>
@@ -276,14 +390,14 @@ export default function Index() {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {systemStats.map((stat, index) => {
           const Icon = stat.icon;
           return (
             <Card key={index} className="hover:shadow-portal transition-shadow">
-              <CardContent className="p-6">
+              <CardContent className="p-4">
                 <div className="flex items-center justify-between">
-                  <div className="space-y-2">
+                  <div className="space-y-1">
                     <p className="text-sm font-medium text-muted-foreground">{stat.title}</p>
                     <p className="text-2xl font-bold">{stat.value}</p>
                     <p className={cn(
@@ -295,7 +409,7 @@ export default function Index() {
                     </p>
                   </div>
                   <div className={cn("p-3 rounded-lg bg-muted", stat.color)}>
-                    <Icon className="h-6 w-6" />
+                    <Icon className="h-5 w-5" />
                   </div>
                 </div>
               </CardContent>
@@ -305,57 +419,94 @@ export default function Index() {
       </div>
 
       {/* Main Content Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Products and Services - Takes up 2 columns */}
-        <div className="lg:col-span-2">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        {/* Products and Services with Integrated Shortcuts - Takes up 3 columns */}
+        <div className="lg:col-span-3">
           <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
-              <div>
-                <CardTitle className="flex items-center">
-                  <Layers className="h-5 w-5 mr-2" />
-                  Products & Services
-                </CardTitle>
-                <CardDescription>
-                  Overview of all business products and services
-                </CardDescription>
+            <CardHeader className="pb-4">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-2 sm:space-y-0">
+                <div>
+                  <CardTitle className="flex items-center">
+                    <Layers className="h-5 w-5 mr-2" />
+                    Products & Services
+                  </CardTitle>
+                  <CardDescription>
+                    Business applications with integrated quick actions
+                  </CardDescription>
+                </div>
+                <Button variant="outline" size="sm">
+                  <Search className="h-4 w-4 mr-2" />
+                  Filter
+                </Button>
               </div>
-              <Button variant="outline" size="sm">
-                <Search className="h-4 w-4 mr-2" />
-                Filter
-              </Button>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
                 {productsAndServices.map((product) => {
                   const Icon = product.icon;
+                  const isExpanded = expandedProduct === product.id;
+                  
                   return (
-                    <div key={product.id} className="p-4 border rounded-lg hover:border-primary transition-colors group">
-                      <div className="flex items-start justify-between mb-3">
-                        <div className="flex items-center space-x-3">
-                          <div className={cn("p-2 rounded-md text-white", product.color)}>
-                            <Icon className="h-4 w-4" />
+                    <div key={product.id} className="border rounded-lg hover:border-primary transition-colors">
+                      <div className="p-4">
+                        <div className="flex items-start justify-between mb-3">
+                          <div className="flex items-center space-x-3 flex-1">
+                            <div className={cn("p-2 rounded-md text-white", product.color)}>
+                              <Icon className="h-4 w-4" />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <h4 className="font-medium text-sm hover:text-primary transition-colors">
+                                {product.name}
+                              </h4>
+                              <p className="text-xs text-muted-foreground">{product.category}</p>
+                            </div>
                           </div>
-                          <div>
-                            <h4 className="font-medium text-sm group-hover:text-primary transition-colors">
-                              {product.name}
-                            </h4>
-                            <p className="text-xs text-muted-foreground">{product.category}</p>
+                          <div className="flex items-center space-x-2">
+                            <span className={cn("px-2 py-1 rounded-full text-xs font-medium", getStatusColor(product.status))}>
+                              {product.status}
+                            </span>
+                            <Button 
+                              variant="ghost" 
+                              size="sm"
+                              onClick={() => setExpandedProduct(isExpanded ? null : product.id)}
+                            >
+                              <MoreHorizontal className="h-4 w-4" />
+                            </Button>
                           </div>
                         </div>
-                        <span className={cn("px-2 py-1 rounded-full text-xs font-medium", getStatusColor(product.status))}>
-                          {product.status}
-                        </span>
-                      </div>
-                      <p className="text-xs text-muted-foreground mb-3">{product.description}</p>
-                      <div className="flex justify-between text-xs">
-                        <span className="flex items-center">
-                          <Users className="h-3 w-3 mr-1" />
-                          {product.users} users
-                        </span>
-                        <span className="flex items-center font-medium">
-                          <DollarSign className="h-3 w-3 mr-1" />
-                          {product.revenue}
-                        </span>
+                        
+                        <p className="text-xs text-muted-foreground mb-3">{product.description}</p>
+                        
+                        <div className="flex justify-between items-center text-xs mb-3">
+                          <span className="flex items-center">
+                            <Users className="h-3 w-3 mr-1" />
+                            {product.users} users
+                          </span>
+                          <span className="flex items-center font-medium">
+                            <DollarSign className="h-3 w-3 mr-1" />
+                            {product.revenue}
+                          </span>
+                        </div>
+
+                        {/* Integrated Quick Actions */}
+                        {isExpanded && (
+                          <div className="border-t pt-3 mt-3">
+                            <p className="text-xs font-medium text-muted-foreground mb-2">Quick Actions:</p>
+                            <div className="grid grid-cols-3 gap-2">
+                              {product.quickActions.map((action, actionIndex) => {
+                                const ActionIcon = action.icon;
+                                return (
+                                  <Link key={actionIndex} to={action.href}>
+                                    <div className="p-2 text-center rounded border hover:border-primary transition-colors group">
+                                      <ActionIcon className="h-4 w-4 mx-auto mb-1 group-hover:text-primary" />
+                                      <span className="text-xs group-hover:text-primary">{action.name}</span>
+                                    </div>
+                                  </Link>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        )}
                       </div>
                     </div>
                   );
@@ -370,230 +521,195 @@ export default function Index() {
           </Card>
         </div>
 
-        {/* Account Details */}
-        <div>
+        {/* Optimized Account Details with Fluid Layout */}
+        <div className="lg:col-span-1">
           <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center">
-                <User className="h-5 w-5 mr-2" />
-                Account Details
+            <CardHeader className="pb-3">
+              <CardTitle className="flex items-center text-lg">
+                <User className="h-4 w-4 mr-2" />
+                Account
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center space-x-3">
-                <div className="h-12 w-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-lg font-medium">
+                <div className="h-10 w-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-medium">
                   {accountDetails.name.split(' ').map(n => n[0]).join('')}
                 </div>
-                <div>
-                  <h4 className="font-medium">{accountDetails.name}</h4>
-                  <p className="text-sm text-muted-foreground">{accountDetails.role}</p>
+                <div className="flex-1 min-w-0">
+                  <h4 className="font-medium text-sm truncate">{accountDetails.name}</h4>
+                  <p className="text-xs text-muted-foreground truncate">{accountDetails.role}</p>
                 </div>
               </div>
               
-              <div className="space-y-3 text-sm">
-                <div className="flex items-center justify-between">
+              <div className="space-y-2 text-xs">
+                <div className="flex justify-between">
                   <span className="text-muted-foreground">Email</span>
-                  <span className="font-medium">{accountDetails.email}</span>
+                  <span className="font-medium truncate ml-2">{accountDetails.email}</span>
                 </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-muted-foreground">Department</span>
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">Dept</span>
                   <span className="font-medium">{accountDetails.department}</span>
                 </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-muted-foreground">Location</span>
-                  <span className="font-medium flex items-center">
-                    <MapPin className="h-3 w-3 mr-1" />
-                    SF, CA
-                  </span>
-                </div>
-                <div className="flex items-center justify-between">
+                <div className="flex justify-between">
                   <span className="text-muted-foreground">Status</span>
                   <span className="px-2 py-1 bg-green-50 text-green-600 rounded-full text-xs font-medium">
                     {accountDetails.accountStatus}
                   </span>
                 </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-muted-foreground">Last Login</span>
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">Login</span>
                   <span className="font-medium">{accountDetails.lastLogin}</span>
                 </div>
               </div>
 
-              <div className="pt-4 border-t">
-                <Button variant="outline" size="sm" className="w-full">
-                  <Edit3 className="h-4 w-4 mr-2" />
-                  Edit Profile
-                </Button>
+              <div className="border-t pt-3">
+                <p className="text-xs font-medium text-muted-foreground mb-2">Recent Activity</p>
+                <div className="space-y-1">
+                  {accountDetails.recentActivity.slice(0, 3).map((activity, index) => (
+                    <div key={index} className="flex items-center space-x-2">
+                      <div className="w-1 h-1 bg-primary rounded-full"></div>
+                      <span className="text-xs text-muted-foreground">{activity}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <Button variant="outline" size="sm" className="w-full">
+                <Edit3 className="h-3 w-3 mr-2" />
+                Edit Profile
+              </Button>
+            </CardContent>
+          </Card>
+
+          {/* Recently Accessed */}
+          <Card className="mt-4">
+            <CardHeader className="pb-3">
+              <CardTitle className="flex items-center text-lg">
+                <History className="h-4 w-4 mr-2" />
+                Recent
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                {recentlyAccessed.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <Link key={item.id} to={item.href}>
+                      <div className="flex items-center space-x-3 p-2 rounded hover:bg-muted transition-colors group">
+                        <div className={cn("p-1.5 rounded text-white", item.color)}>
+                          <Icon className="h-3 w-3" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h5 className="text-sm font-medium group-hover:text-primary transition-colors truncate">
+                            {item.name}
+                          </h5>
+                          <p className="text-xs text-muted-foreground">{item.lastAccessed}</p>
+                        </div>
+                        <ExternalLink className="h-3 w-3 text-muted-foreground group-hover:text-primary" />
+                      </div>
+                    </Link>
+                  );
+                })}
               </div>
             </CardContent>
           </Card>
         </div>
       </div>
 
-      {/* Second Row - Pending Tasks and Shortcuts */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Pending Tasks - Takes up 2 columns */}
-        <div className="lg:col-span-2">
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
-              <div>
-                <CardTitle className="flex items-center">
-                  <CheckSquare className="h-5 w-5 mr-2" />
-                  Pending Tasks
-                </CardTitle>
-                <CardDescription>
-                  Tasks requiring attention across all systems
-                </CardDescription>
-              </div>
-              <div className="flex items-center space-x-2">
-                <select 
-                  value={taskFilter} 
-                  onChange={(e) => setTaskFilter(e.target.value)}
-                  className="text-sm border rounded px-2 py-1"
-                >
-                  <option value="all">All Priority</option>
-                  <option value="high">High Priority</option>
-                  <option value="medium">Medium Priority</option>
-                  <option value="low">Low Priority</option>
-                </select>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {filteredTasks.map((task) => (
-                  <div key={task.id} className="p-4 border rounded-lg hover:border-primary transition-colors">
-                    <div className="flex items-start justify-between mb-2">
-                      <div className="flex-1">
-                        <div className="flex items-center space-x-2 mb-1">
-                          <h4 className="font-medium text-sm">{task.title}</h4>
-                          <span className={cn("px-2 py-1 rounded-full text-xs font-medium", getPriorityColor(task.priority))}>
-                            {task.priority}
-                          </span>
+      {/* Monitoring and Work Orders */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* System Monitoring Alerts */}
+        <Card>
+          <CardHeader className="pb-4">
+            <CardTitle className="flex items-center">
+              <MonitorSpeaker className="h-5 w-5 mr-2" />
+              System Monitoring
+            </CardTitle>
+            <CardDescription>
+              Real-time system health and performance alerts
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-3">
+              {systemMonitoringAlerts.map((alert) => {
+                const Icon = alert.icon;
+                return (
+                  <div key={alert.id} className={cn("p-3 rounded-lg border", getSeverityColor(alert.severity))}>
+                    <div className="flex items-start space-x-3">
+                      <Icon className="h-4 w-4 mt-0.5" />
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center justify-between mb-1">
+                          <h4 className="font-medium text-sm">{alert.title}</h4>
+                          <span className="text-xs text-muted-foreground">{alert.timestamp}</span>
                         </div>
-                        <div className="flex items-center space-x-4 text-xs text-muted-foreground">
-                          <span className="flex items-center">
-                            <Calendar className="h-3 w-3 mr-1" />
-                            Due: {task.dueDate}
-                          </span>
-                          <span className="flex items-center">
-                            <User className="h-3 w-3 mr-1" />
-                            {task.assignee}
-                          </span>
-                          <span className="px-2 py-1 bg-muted rounded text-xs">
-                            {task.category}
-                          </span>
-                        </div>
+                        <p className="text-xs text-muted-foreground mb-1">{alert.message}</p>
+                        <p className="text-xs font-medium">{alert.source}</p>
                       </div>
-                      <Button variant="outline" size="sm">
-                        View
-                      </Button>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <div className="flex-1 bg-muted rounded-full h-2">
-                        <div 
-                          className="bg-primary h-2 rounded-full transition-all" 
-                          style={{ width: `${task.progress}%` }}
-                        ></div>
-                      </div>
-                      <span className="text-xs text-muted-foreground">{task.progress}%</span>
                     </div>
                   </div>
-                ))}
-              </div>
-              <div className="mt-6 pt-4 border-t">
-                <Link to="/tasks" className="text-sm text-primary hover:underline">
-                  View all tasks
-                </Link>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
+                );
+              })}
+            </div>
+            <div className="mt-4 pt-4 border-t">
+              <Link to="/monitoring" className="text-sm text-primary hover:underline">
+                View all monitoring alerts
+              </Link>
+            </div>
+          </CardContent>
+        </Card>
 
-        {/* Customizable Shortcuts */}
-        <div>
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
-              <CardTitle className="flex items-center">
-                <Zap className="h-5 w-5 mr-2" />
-                Quick Shortcuts
-              </CardTitle>
-              <Button 
-                variant="outline" 
-                size="sm"
-                onClick={() => setIsEditingShortcuts(!isEditingShortcuts)}
-              >
-                <Edit3 className="h-4 w-4" />
-              </Button>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-2 gap-3">
-                {shortcuts.map((shortcut) => {
-                  const Icon = shortcut.icon;
-                  return (
-                    <Link key={shortcut.id} to={shortcut.href} className="block">
-                      <div className="group p-3 rounded-lg border hover:border-primary transition-colors text-center relative">
-                        {isEditingShortcuts && (
-                          <div className="absolute -top-2 -right-2">
-                            <Button variant="destructive" size="icon" className="h-6 w-6">
-                              ×
-                            </Button>
-                          </div>
-                        )}
-                        <div className={cn("p-2 rounded-md text-white mx-auto mb-2 w-fit", shortcut.color)}>
-                          <Icon className="h-4 w-4" />
-                        </div>
-                        <h4 className="text-xs font-medium group-hover:text-primary transition-colors">
-                          {shortcut.name}
-                        </h4>
+        {/* Pending Work Orders */}
+        <Card>
+          <CardHeader className="pb-4">
+            <CardTitle className="flex items-center">
+              <Wrench className="h-5 w-5 mr-2" />
+              Work Orders
+            </CardTitle>
+            <CardDescription>
+              Pending maintenance and deployment tasks
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {pendingWorkOrders.map((order) => {
+                const Icon = order.icon;
+                return (
+                  <div key={order.id} className="p-3 border rounded-lg hover:border-primary transition-colors">
+                    <div className="flex items-start justify-between mb-2">
+                      <div className="flex items-center space-x-2">
+                        <Icon className="h-4 w-4" />
+                        <h4 className="font-medium text-sm">{order.title}</h4>
                       </div>
-                    </Link>
-                  );
-                })}
-              </div>
-              
-              {isEditingShortcuts && (
-                <div className="mt-4 pt-4 border-t">
-                  <Button variant="outline" size="sm" className="w-full">
-                    <Plus className="h-4 w-4 mr-2" />
-                    Add Shortcut
-                  </Button>
-                </div>
-              )}
-            </CardContent>
-          </Card>
-
-          {/* System Alerts */}
-          <Card className="mt-6">
-            <CardHeader>
-              <CardTitle className="flex items-center">
-                <AlertCircle className="h-5 w-5 mr-2" />
-                System Alerts
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <div className="flex items-start space-x-3 p-2 bg-yellow-50 rounded-lg">
-                <AlertTriangle className="h-4 w-4 text-yellow-600 mt-0.5" />
-                <div>
-                  <p className="text-sm font-medium">Storage Warning</p>
-                  <p className="text-xs text-muted-foreground">Database approaching 80% capacity</p>
-                </div>
-              </div>
-              <div className="flex items-start space-x-3 p-2 bg-green-50 rounded-lg">
-                <CheckCircle className="h-4 w-4 text-green-600 mt-0.5" />
-                <div>
-                  <p className="text-sm font-medium">Backup Complete</p>
-                  <p className="text-xs text-muted-foreground">Daily backup finished successfully</p>
-                </div>
-              </div>
-              <div className="flex items-start space-x-3 p-2 bg-blue-50 rounded-lg">
-                <Bell className="h-4 w-4 text-blue-600 mt-0.5" />
-                <div>
-                  <p className="text-sm font-medium">Update Available</p>
-                  <p className="text-xs text-muted-foreground">CRM system update ready</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
+                      <span className={cn("px-2 py-1 rounded-full text-xs font-medium", getPriorityColor(order.priority))}>
+                        {order.priority}
+                      </span>
+                    </div>
+                    
+                    <div className="flex items-center justify-between text-xs text-muted-foreground mb-2">
+                      <span>{order.assignee}</span>
+                      <span>Due: {order.dueDate}</span>
+                    </div>
+                    
+                    <div className="flex items-center space-x-2">
+                      <div className="flex-1 bg-muted rounded-full h-1.5">
+                        <div 
+                          className="bg-primary h-1.5 rounded-full transition-all" 
+                          style={{ width: `${order.progress}%` }}
+                        ></div>
+                      </div>
+                      <span className="text-xs text-muted-foreground">{order.progress}%</span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="mt-4 pt-4 border-t">
+              <Link to="/work-orders" className="text-sm text-primary hover:underline">
+                View all work orders
+              </Link>
+            </div>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
