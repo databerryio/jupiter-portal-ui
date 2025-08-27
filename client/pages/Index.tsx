@@ -328,8 +328,8 @@ export default function Index() {
         })}
       </div>
 
-      {/* 4-Unit Flexbox System - Auto-wrapping Layout with flush alignment */}
-      <div className="flex flex-wrap items-start w-full" style={{ gap: '24px' }}>
+      {/* Top-Left-Right Layout Structure */}
+      <div className="flex flex-col lg:flex-row gap-6 items-start">
         {/* Recent Activity - 3 units (75% width) */}
         <div className="w-full md:flex-[3_3_0%] md:min-w-0">
           <Card className="h-fit">
