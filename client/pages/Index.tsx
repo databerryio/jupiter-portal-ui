@@ -329,7 +329,7 @@ export default function Index() {
       </div>
 
       {/* Fluid Layout Sections - Content-Driven Dynamic Sizing */}
-      <div className="grid grid-cols-1 lg:grid-cols-[auto_auto] xl:grid-cols-[auto_auto_auto_auto] gap-6 auto-rows-min items-start">
+      <div className="grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-6 auto-rows-min items-start w-full">
         {/* Recent Activity - Dynamically sized based on content */}
         <div className="min-w-0 w-full lg:w-auto lg:min-w-[500px] lg:max-w-[800px]">
           <Card className="h-fit">
