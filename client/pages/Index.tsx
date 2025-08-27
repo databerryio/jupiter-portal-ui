@@ -328,10 +328,10 @@ export default function Index() {
         })}
       </div>
 
-      {/* Fluid Layout Sections - Adaptive Grid for All Sections */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 auto-rows-min">
-        {/* Recent Activity - Large section */}
-        <div className="lg:col-span-8">
+      {/* Fluid Layout Sections - Content-Driven Dynamic Sizing */}
+      <div className="grid grid-cols-1 lg:grid-cols-[auto_auto] xl:grid-cols-[auto_auto_auto_auto] gap-6 auto-rows-min items-start">
+        {/* Recent Activity - Dynamically sized based on content */}
+        <div className="min-w-0 w-full lg:w-auto lg:min-w-[500px] lg:max-w-[800px]">
           <Card>
             <CardHeader className="pb-4">
               <CardTitle className="flex items-center text-lg">
@@ -385,8 +385,8 @@ export default function Index() {
           </Card>
         </div>
 
-        {/* Account Overview - Compact section */}
-        <div className="lg:col-span-4">
+        {/* Account Overview - Compact, content-driven size */}
+        <div className="min-w-0 w-full lg:w-auto lg:min-w-[280px] lg:max-w-[350px]">
           <Card>
             <CardHeader className="pb-3">
               <CardTitle className="flex items-center text-lg">
@@ -464,8 +464,8 @@ export default function Index() {
           </Card>
         </div>
 
-        {/* Products & Services - Large section */}
-        <div className="lg:col-span-8">
+        {/* Products & Services - Dynamically sized based on content */}
+        <div className="min-w-0 w-full lg:w-auto lg:min-w-[500px] lg:max-w-[800px]">
           <Card>
             <CardHeader className="pb-4">
               <div className="flex items-center justify-between">
@@ -526,8 +526,8 @@ export default function Index() {
           </Card>
         </div>
 
-        {/* System Monitoring - Compact section */}
-        <div className="lg:col-span-4">
+        {/* System Monitoring - Compact, content-driven size */}
+        <div className="min-w-0 w-full lg:w-auto lg:min-w-[280px] lg:max-w-[350px]">
           <Card>
             <CardHeader className="pb-4">
               <CardTitle className="flex items-center text-lg">
