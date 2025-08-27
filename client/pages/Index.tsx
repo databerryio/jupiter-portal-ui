@@ -98,98 +98,58 @@ const productsAndServices = [
   {
     id: 1,
     name: "Customer CRM",
-    category: "Sales & Marketing",
-    status: "Active",
-    users: 142,
-    revenue: "$245K",
     icon: Users,
     color: "bg-blue-500",
-    description: "Complete customer relationship management platform",
-    quickActions: [
-      { name: "Dashboard", icon: BarChart3, href: "/crm/dashboard" },
-      { name: "Add Contact", icon: Plus, href: "/crm/contacts/new" },
-      { name: "Reports", icon: FileText, href: "/crm/reports" }
-    ]
+    href: "/crm"
   },
   {
     id: 2,
     name: "E-commerce Platform",
-    category: "Commerce",
-    status: "Active",
-    users: 89,
-    revenue: "$387K",
     icon: ShoppingCart,
     color: "bg-green-500",
-    description: "Integrated online store and inventory management",
-    quickActions: [
-      { name: "Store Admin", icon: Settings, href: "/ecommerce/admin" },
-      { name: "Orders", icon: ShoppingCart, href: "/ecommerce/orders" },
-      { name: "Inventory", icon: Database, href: "/ecommerce/inventory" }
-    ]
+    href: "/ecommerce"
   },
   {
     id: 3,
     name: "Analytics Suite",
-    category: "Data & Analytics",
-    status: "Active",
-    users: 67,
-    revenue: "$156K",
     icon: BarChart3,
     color: "bg-purple-500",
-    description: "Advanced business intelligence and reporting",
-    quickActions: [
-      { name: "Dashboards", icon: PieChart, href: "/analytics/dashboards" },
-      { name: "Reports", icon: FileText, href: "/analytics/reports" },
-      { name: "Data Sources", icon: Database, href: "/analytics/sources" }
-    ]
+    href: "/analytics"
   },
   {
     id: 4,
     name: "Communication Hub",
-    category: "Collaboration",
-    status: "Active",
-    users: 234,
-    revenue: "$98K",
     icon: Mail,
     color: "bg-orange-500",
-    description: "Unified messaging and communication platform",
-    quickActions: [
-      { name: "Messages", icon: Mail, href: "/comm/messages" },
-      { name: "Channels", icon: Globe, href: "/comm/channels" },
-      { name: "Settings", icon: Settings, href: "/comm/settings" }
-    ]
+    href: "/communication"
   },
   {
     id: 5,
     name: "Project Management",
-    category: "Productivity",
-    status: "Beta",
-    users: 45,
-    revenue: "$67K",
     icon: Briefcase,
     color: "bg-yellow-500",
-    description: "Task tracking and project collaboration tools",
-    quickActions: [
-      { name: "Projects", icon: Briefcase, href: "/projects" },
-      { name: "Tasks", icon: CheckSquare, href: "/projects/tasks" },
-      { name: "Calendar", icon: Calendar, href: "/projects/calendar" }
-    ]
+    href: "/projects"
   },
   {
     id: 6,
     name: "Cloud Storage",
-    category: "Infrastructure",
-    status: "Active",
-    users: 312,
-    revenue: "$123K",
     icon: Cloud,
     color: "bg-indigo-500",
-    description: "Secure file storage and sharing solution",
-    quickActions: [
-      { name: "Files", icon: FileText, href: "/storage/files" },
-      { name: "Sharing", icon: Users, href: "/storage/sharing" },
-      { name: "Security", icon: Shield, href: "/storage/security" }
-    ]
+    href: "/storage"
+  },
+  {
+    id: 7,
+    name: "Security Center",
+    icon: Shield,
+    color: "bg-red-500",
+    href: "/security"
+  },
+  {
+    id: 8,
+    name: "API Gateway",
+    icon: Globe,
+    color: "bg-teal-500",
+    href: "/api"
   }
 ];
 
@@ -333,7 +293,6 @@ const accountDetails = {
 
 export default function Index() {
   const [isLoading, setIsLoading] = useState(false);
-  const [expandedProduct, setExpandedProduct] = useState<number | null>(null);
 
   const handleRefresh = () => {
     setIsLoading(true);
@@ -354,15 +313,6 @@ export default function Index() {
       case "High": return "text-red-600 bg-red-50";
       case "Medium": return "text-yellow-600 bg-yellow-50";
       case "Low": return "text-green-600 bg-green-50";
-      default: return "text-gray-600 bg-gray-50";
-    }
-  };
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case "Active": return "text-green-600 bg-green-50";
-      case "Beta": return "text-yellow-600 bg-yellow-50";
-      case "Maintenance": return "text-orange-600 bg-orange-50";
       default: return "text-gray-600 bg-gray-50";
     }
   };
@@ -420,108 +370,44 @@ export default function Index() {
 
       {/* Main Content Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-        {/* Products and Services with Integrated Shortcuts - Takes up 3 columns */}
+        {/* Simplified Products and Services Grid - Takes up 3 columns */}
         <div className="lg:col-span-3">
           <Card>
             <CardHeader className="pb-4">
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-2 sm:space-y-0">
-                <div>
-                  <CardTitle className="flex items-center">
-                    <Layers className="h-5 w-5 mr-2" />
-                    Products & Services
-                  </CardTitle>
-                  <CardDescription>
-                    Business applications with integrated quick actions
-                  </CardDescription>
-                </div>
-                <Button variant="outline" size="sm">
-                  <Search className="h-4 w-4 mr-2" />
-                  Filter
-                </Button>
-              </div>
+              <CardTitle className="flex items-center">
+                <Layers className="h-5 w-5 mr-2" />
+                Products & Services
+              </CardTitle>
+              <CardDescription>
+                Quick access to business applications and services
+              </CardDescription>
             </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
+            <CardContent className="pb-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
                 {productsAndServices.map((product) => {
                   const Icon = product.icon;
-                  const isExpanded = expandedProduct === product.id;
                   
                   return (
-                    <div key={product.id} className="border rounded-lg hover:border-primary transition-colors">
-                      <div className="p-4">
-                        <div className="flex items-start justify-between mb-3">
-                          <div className="flex items-center space-x-3 flex-1">
-                            <div className={cn("p-2 rounded-md text-white", product.color)}>
-                              <Icon className="h-4 w-4" />
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <h4 className="font-medium text-sm hover:text-primary transition-colors">
-                                {product.name}
-                              </h4>
-                              <p className="text-xs text-muted-foreground">{product.category}</p>
-                            </div>
+                    <Link key={product.id} to={product.href}>
+                      <div className="group p-4 rounded-lg border hover:border-primary transition-all hover:shadow-sm">
+                        <div className="text-center">
+                          <div className={cn("p-3 rounded-lg text-white mx-auto mb-3 w-fit group-hover:scale-105 transition-transform", product.color)}>
+                            <Icon className="h-6 w-6" />
                           </div>
-                          <div className="flex items-center space-x-2">
-                            <span className={cn("px-2 py-1 rounded-full text-xs font-medium", getStatusColor(product.status))}>
-                              {product.status}
-                            </span>
-                            <Button 
-                              variant="ghost" 
-                              size="sm"
-                              onClick={() => setExpandedProduct(isExpanded ? null : product.id)}
-                            >
-                              <MoreHorizontal className="h-4 w-4" />
-                            </Button>
-                          </div>
+                          <h4 className="font-medium text-sm group-hover:text-primary transition-colors">
+                            {product.name}
+                          </h4>
                         </div>
-                        
-                        <p className="text-xs text-muted-foreground mb-3">{product.description}</p>
-                        
-                        <div className="flex justify-between items-center text-xs mb-3">
-                          <span className="flex items-center">
-                            <Users className="h-3 w-3 mr-1" />
-                            {product.users} users
-                          </span>
-                          <span className="flex items-center font-medium">
-                            <DollarSign className="h-3 w-3 mr-1" />
-                            {product.revenue}
-                          </span>
-                        </div>
-
-                        {/* Integrated Quick Actions */}
-                        {isExpanded && (
-                          <div className="border-t pt-3 mt-3">
-                            <p className="text-xs font-medium text-muted-foreground mb-2">Quick Actions:</p>
-                            <div className="grid grid-cols-3 gap-2">
-                              {product.quickActions.map((action, actionIndex) => {
-                                const ActionIcon = action.icon;
-                                return (
-                                  <Link key={actionIndex} to={action.href}>
-                                    <div className="p-2 text-center rounded border hover:border-primary transition-colors group">
-                                      <ActionIcon className="h-4 w-4 mx-auto mb-1 group-hover:text-primary" />
-                                      <span className="text-xs group-hover:text-primary">{action.name}</span>
-                                    </div>
-                                  </Link>
-                                );
-                              })}
-                            </div>
-                          </div>
-                        )}
                       </div>
-                    </div>
+                    </Link>
                   );
                 })}
-              </div>
-              <div className="mt-6 pt-4 border-t">
-                <Link to="/systems" className="text-sm text-primary hover:underline">
-                  Manage all products & services
-                </Link>
               </div>
             </CardContent>
           </Card>
         </div>
 
-        {/* Optimized Account Details with Fluid Layout */}
+        {/* Account Details with Consistent Width */}
         <div className="lg:col-span-1">
           <Card>
             <CardHeader className="pb-3">
@@ -530,7 +416,7 @@ export default function Index() {
                 Account
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-4 pb-4">
               <div className="flex items-center space-x-3">
                 <div className="h-10 w-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-medium">
                   {accountDetails.name.split(' ').map(n => n[0]).join('')}
@@ -581,15 +467,15 @@ export default function Index() {
             </CardContent>
           </Card>
 
-          {/* Recently Accessed */}
-          <Card className="mt-4">
+          {/* Recently Accessed with Consistent Spacing */}
+          <Card className="mt-6">
             <CardHeader className="pb-3">
               <CardTitle className="flex items-center text-lg">
                 <History className="h-4 w-4 mr-2" />
                 Recent
               </CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="pb-4">
               <div className="space-y-3">
                 {recentlyAccessed.map((item) => {
                   const Icon = item.icon;
@@ -616,7 +502,7 @@ export default function Index() {
         </div>
       </div>
 
-      {/* Monitoring and Work Orders */}
+      {/* Monitoring and Work Orders with Consistent Width */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* System Monitoring Alerts */}
         <Card>
@@ -629,7 +515,7 @@ export default function Index() {
               Real-time system health and performance alerts
             </CardDescription>
           </CardHeader>
-          <CardContent>
+          <CardContent className="pb-4">
             <div className="space-y-3">
               {systemMonitoringAlerts.map((alert) => {
                 const Icon = alert.icon;
@@ -669,7 +555,7 @@ export default function Index() {
               Pending maintenance and deployment tasks
             </CardDescription>
           </CardHeader>
-          <CardContent>
+          <CardContent className="pb-4">
             <div className="space-y-4">
               {pendingWorkOrders.map((order) => {
                 const Icon = order.icon;
