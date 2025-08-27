@@ -34,7 +34,7 @@ export function PortalLayout({ children }: PortalLayoutProps) {
   return (
     <div className="h-screen bg-background flex flex-col">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <header className="fixed top-0 left-0 right-0 z-50 w-full border-b bg-background">
         <div className="container flex h-16 items-center justify-between">
           {/* Left Section - Logo, Brand and Navigation */}
           <div className="flex items-center space-x-8">
