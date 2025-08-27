@@ -343,7 +343,7 @@ export default function Index() {
               </CardDescription>
             </CardHeader>
             <CardContent className="pb-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+              <div className="grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-3">
                 {recentlyAccessed.map((item) => {
                   const Icon = item.icon;
                   return (
@@ -485,7 +485,7 @@ export default function Index() {
               </div>
             </CardHeader>
             <CardContent className="pb-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-3">
                 {productsAndServices.slice(0, 6).map((product) => {
                   const Icon = product.icon;
 
