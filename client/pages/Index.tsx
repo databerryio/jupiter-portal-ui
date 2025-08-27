@@ -332,7 +332,7 @@ export default function Index() {
       <div className="grid grid-cols-1 lg:grid-cols-[auto_auto] xl:grid-cols-[auto_auto_auto_auto] gap-6 auto-rows-min items-start">
         {/* Recent Activity - Dynamically sized based on content */}
         <div className="min-w-0 w-full lg:w-auto lg:min-w-[500px] lg:max-w-[800px]">
-          <Card>
+          <Card className="h-fit">
             <CardHeader className="pb-4">
               <CardTitle className="flex items-center text-lg">
                 <History className="h-4 w-4 mr-2" />
@@ -387,7 +387,7 @@ export default function Index() {
 
         {/* Account Overview - Compact, content-driven size */}
         <div className="min-w-0 w-full lg:w-auto lg:min-w-[280px] lg:max-w-[350px]">
-          <Card>
+          <Card className="h-fit">
             <CardHeader className="pb-3">
               <CardTitle className="flex items-center text-lg">
                 <User className="h-4 w-4 mr-2" />
@@ -466,7 +466,7 @@ export default function Index() {
 
         {/* Products & Services - Dynamically sized based on content */}
         <div className="min-w-0 w-full lg:w-auto lg:min-w-[500px] lg:max-w-[800px]">
-          <Card>
+          <Card className="h-fit">
             <CardHeader className="pb-4">
               <div className="flex items-center justify-between">
                 <div>
@@ -528,7 +528,7 @@ export default function Index() {
 
         {/* System Monitoring - Compact, content-driven size */}
         <div className="min-w-0 w-full lg:w-auto lg:min-w-[280px] lg:max-w-[350px]">
-          <Card>
+          <Card className="h-fit">
             <CardHeader className="pb-4">
               <CardTitle className="flex items-center text-lg">
                 <MonitorSpeaker className="h-4 w-4 mr-2" />
