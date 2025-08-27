@@ -328,10 +328,10 @@ export default function Index() {
         })}
       </div>
 
-      {/* Second Row: Recent Activity and Account Overview - Fluid Layout */}
-      <div className="flex flex-col lg:flex-row gap-6">
-        {/* Recent Section - Takes most space */}
-        <div className="flex-1 lg:min-w-0">
+      {/* Fluid Layout Sections - Adaptive Grid for All Sections */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 auto-rows-min">
+        {/* Recent Activity - Large section */}
+        <div className="lg:col-span-8">
           <Card>
             <CardHeader className="pb-4">
               <CardTitle className="flex items-center text-lg">
