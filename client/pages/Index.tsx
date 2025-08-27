@@ -252,36 +252,6 @@ const systemMonitoringAlerts = [
   },
 ];
 
-const pendingWorkOrders = [
-  {
-    id: 1,
-    title: "CRM Update",
-    priority: "High",
-    assignee: "DevOps",
-    dueDate: "Jan 15",
-    progress: 75,
-    icon: Wrench,
-  },
-  {
-    id: 2,
-    title: "DB Maintenance",
-    priority: "Medium",
-    assignee: "DBA Team",
-    dueDate: "Jan 20",
-    progress: 30,
-    icon: Database,
-  },
-  {
-    id: 3,
-    title: "Security Audit",
-    priority: "High",
-    assignee: "Security",
-    dueDate: "Jan 18",
-    progress: 60,
-    icon: Shield,
-  },
-];
-
 const accountDetails = {
   name: "Admin User",
   email: "admin@portal.com",
@@ -317,22 +287,9 @@ export default function Index() {
     }
   };
 
-  const getPriorityColor = (priority: string) => {
-    switch (priority) {
-      case "High":
-        return "text-red-600 bg-red-50";
-      case "Medium":
-        return "text-yellow-600 bg-yellow-50";
-      case "Low":
-        return "text-green-600 bg-green-50";
-      default:
-        return "text-gray-600 bg-gray-50";
-    }
-  };
-
   return (
     <div className="container mx-auto p-4 space-y-6">
-      {/* Stats Grid */}
+      {/* Top Section - 4 Metric Areas */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {systemStats.map((stat, index) => {
           const Icon = stat.icon;
@@ -369,11 +326,12 @@ export default function Index() {
         })}
       </div>
 
-      {/* Second Row: Recent (3 units) + Account Overview (1 unit) */}
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-        {/* Recent Section - Horizontally Tiled (3 units) */}
-        <div className="lg:col-span-3">
-          <Card>
+      {/* Top-Left-Right Layout Structure */}
+      <div className="flex flex-col md:flex-row gap-6 items-start">
+        {/* Left Section - Waterfall layout (flex-grow, ~75% width) */}
+        <div className="w-full md:flex-[3] md:min-w-0 space-y-6">
+          {/* Recent Activity - First layer */}
+          <Card className="h-fit">
             <CardHeader className="pb-4">
               <CardTitle className="flex items-center text-lg">
                 <History className="h-4 w-4 mr-2" />
@@ -384,26 +342,30 @@ export default function Index() {
               </CardDescription>
             </CardHeader>
             <CardContent className="pb-4">
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+              <div className="grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-3">
                 {recentlyAccessed.map((item) => {
                   const Icon = item.icon;
                   return (
                     <Link key={item.id} to={item.href}>
-                      <div className="group p-3 rounded-lg border hover:border-primary transition-all hover:shadow-sm text-center">
-                        <div
-                          className={cn(
-                            "p-2 rounded-lg text-white mx-auto mb-2 w-fit group-hover:scale-105 transition-transform",
-                            item.color,
-                          )}
-                        >
-                          <Icon className="h-4 w-4" />
+                      <div className="group p-3 rounded-lg border hover:border-primary transition-all hover:shadow-sm">
+                        <div className="flex items-center space-x-3">
+                          <div
+                            className={cn(
+                              "p-2 rounded-lg text-white group-hover:scale-105 transition-transform flex-shrink-0",
+                              item.color,
+                            )}
+                          >
+                            <Icon className="h-4 w-4" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <h5 className="text-sm font-medium group-hover:text-primary transition-colors truncate">
+                              {item.name}
+                            </h5>
+                            <p className="text-xs text-muted-foreground">
+                              {item.lastAccessed}
+                            </p>
+                          </div>
                         </div>
-                        <h5 className="text-xs font-medium group-hover:text-primary transition-colors truncate mb-1">
-                          {item.name}
-                        </h5>
-                        <p className="text-xs text-muted-foreground">
-                          {item.lastAccessed}
-                        </p>
                       </div>
                     </Link>
                   );
@@ -420,11 +382,72 @@ export default function Index() {
               </div>
             </CardContent>
           </Card>
+
+          {/* Products & Services - Second layer */}
+          <Card className="h-fit">
+            <CardHeader className="pb-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <CardTitle className="flex items-center">
+                    <Layers className="h-5 w-5 mr-2" />
+                    Products & Services
+                  </CardTitle>
+                  <CardDescription>
+                    Quick access to business applications and services
+                  </CardDescription>
+                </div>
+                <Button size="sm" className="flex items-center gap-2">
+                  <Plus className="h-4 w-4" />
+                  Add Product
+                </Button>
+              </div>
+            </CardHeader>
+            <CardContent className="pb-4">
+              <div className="grid grid-cols-1 sm:grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-3">
+                {productsAndServices.slice(0, 6).map((product) => {
+                  const Icon = product.icon;
+
+                  return (
+                    <Link key={product.id} to={product.href}>
+                      <div className="group p-3 rounded-lg border hover:border-primary transition-all hover:shadow-sm">
+                        <div className="flex items-center space-x-3">
+                          <div
+                            className={cn(
+                              "p-2 rounded-lg text-white group-hover:scale-105 transition-transform",
+                              product.color,
+                            )}
+                          >
+                            <Icon className="h-5 w-5" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <h4 className="font-medium text-sm group-hover:text-primary transition-colors truncate">
+                              {product.name}
+                            </h4>
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  );
+                })}
+              </div>
+
+              <div className="mt-4 pt-4 border-t">
+                <Link
+                  to="/products-services"
+                  className="inline-flex items-center text-sm text-primary hover:underline"
+                >
+                  View all products & services
+                  <ArrowRight className="h-3 w-3 ml-1" />
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
         </div>
 
-        {/* Simplified Account Overview (1 unit) */}
-        <div className="lg:col-span-1">
-          <Card>
+        {/* Right Section - Waterfall layout (~25% width) */}
+        <div className="w-full md:flex-[1] md:min-w-0 space-y-6">
+          {/* Account Overview - First layer */}
+          <Card className="h-fit">
             <CardHeader className="pb-3">
               <CardTitle className="flex items-center text-lg">
                 <User className="h-4 w-4 mr-2" />
@@ -499,76 +522,9 @@ export default function Index() {
               </div>
             </CardContent>
           </Card>
-        </div>
-      </div>
 
-      {/* Third Row: Products & Services (3 units) + System Monitoring (1 unit) */}
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-        {/* Products & Services (3 units) */}
-        <div className="lg:col-span-3">
-          <Card>
-            <CardHeader className="pb-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <CardTitle className="flex items-center">
-                    <Layers className="h-5 w-5 mr-2" />
-                    Products & Services
-                  </CardTitle>
-                  <CardDescription>
-                    Quick access to business applications and services
-                  </CardDescription>
-                </div>
-                <Button size="sm" className="flex items-center gap-2">
-                  <Plus className="h-4 w-4" />
-                  Add Product
-                </Button>
-              </div>
-            </CardHeader>
-            <CardContent className="pb-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                {productsAndServices.slice(0, 6).map((product) => {
-                  const Icon = product.icon;
-
-                  return (
-                    <Link key={product.id} to={product.href}>
-                      <div className="group p-3 rounded-lg border hover:border-primary transition-all hover:shadow-sm">
-                        <div className="flex items-center space-x-3">
-                          <div
-                            className={cn(
-                              "p-2 rounded-lg text-white group-hover:scale-105 transition-transform",
-                              product.color,
-                            )}
-                          >
-                            <Icon className="h-5 w-5" />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <h4 className="font-medium text-sm group-hover:text-primary transition-colors truncate">
-                              {product.name}
-                            </h4>
-                          </div>
-                        </div>
-                      </div>
-                    </Link>
-                  );
-                })}
-              </div>
-
-              <div className="mt-4 pt-4 border-t">
-                <Link
-                  to="/products-services"
-                  className="inline-flex items-center text-sm text-primary hover:underline"
-                >
-                  View all products & services
-                  <ArrowRight className="h-3 w-3 ml-1" />
-                </Link>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* System Monitoring (1 unit) */}
-        <div className="lg:col-span-1">
-          <Card>
+          {/* System Monitoring - Second layer */}
+          <Card className="h-fit">
             <CardHeader className="pb-4">
               <CardTitle className="flex items-center text-lg">
                 <MonitorSpeaker className="h-4 w-4 mr-2" />
@@ -620,72 +576,6 @@ export default function Index() {
           </Card>
         </div>
       </div>
-
-      {/* Work Orders - Full Width */}
-      <Card>
-        <CardHeader className="pb-4">
-          <CardTitle className="flex items-center">
-            <Wrench className="h-5 w-5 mr-2" />
-            Pending Work Orders
-          </CardTitle>
-          <CardDescription>
-            Active maintenance and deployment tasks
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="pb-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {pendingWorkOrders.map((order) => {
-              const Icon = order.icon;
-              return (
-                <div
-                  key={order.id}
-                  className="p-4 border rounded-lg hover:border-primary transition-colors"
-                >
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="flex items-center space-x-2">
-                      <Icon className="h-4 w-4" />
-                      <h4 className="font-medium text-sm">{order.title}</h4>
-                    </div>
-                    <span
-                      className={cn(
-                        "px-2 py-1 rounded-full text-xs font-medium",
-                        getPriorityColor(order.priority),
-                      )}
-                    >
-                      {order.priority}
-                    </span>
-                  </div>
-
-                  <div className="space-y-2 text-sm text-muted-foreground mb-3">
-                    <div>Assignee: {order.assignee}</div>
-                    <div>Due: {order.dueDate}</div>
-                  </div>
-
-                  <div className="flex items-center space-x-2">
-                    <div className="flex-1 bg-muted rounded-full h-2">
-                      <div
-                        className="bg-primary h-2 rounded-full transition-all"
-                        style={{ width: `${order.progress}%` }}
-                      ></div>
-                    </div>
-                    <span className="text-sm text-muted-foreground">
-                      {order.progress}%
-                    </span>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-          <div className="mt-4 pt-4 border-t">
-            <Link
-              to="/work-orders"
-              className="text-sm text-primary hover:underline"
-            >
-              View all work orders
-            </Link>
-          </div>
-        </CardContent>
-      </Card>
     </div>
   );
 }

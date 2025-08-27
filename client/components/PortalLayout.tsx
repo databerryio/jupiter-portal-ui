@@ -32,44 +32,45 @@ export function PortalLayout({ children }: PortalLayoutProps) {
   const location = useLocation();
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="h-screen bg-background flex flex-col">
       {/* Header */}
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-16 items-center">
-          {/* Logo and Brand */}
-          <div className="flex items-center space-x-4">
+      <header className="fixed top-0 left-0 right-0 z-50 w-full border-b bg-background">
+        <div className="container flex h-16 items-center justify-between">
+          {/* Left Section - Logo, Brand and Navigation */}
+          <div className="flex items-center space-x-8">
+            {/* Logo and Brand */}
             <div className="flex items-center space-x-2">
               <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
                 <Database className="h-5 w-5 text-primary-foreground" />
               </div>
               <span className="font-bold text-xl">Portal Console</span>
             </div>
+
+            {/* Navigation */}
+            <nav className="hidden lg:flex items-center space-x-6 text-sm font-medium">
+              {navigationItems.map((item) => {
+                const Icon = item.icon;
+                const isActive = location.pathname === item.href;
+
+                return (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    className={cn(
+                      "flex items-center space-x-2 transition-colors hover:text-foreground/80",
+                      isActive ? "text-foreground" : "text-foreground/60",
+                    )}
+                  >
+                    <Icon className="h-4 w-4" />
+                    <span>{item.name}</span>
+                  </Link>
+                );
+              })}
+            </nav>
           </div>
 
-          {/* Navigation */}
-          <nav className="hidden md:flex items-center space-x-6 text-sm font-medium mx-6">
-            {navigationItems.map((item) => {
-              const Icon = item.icon;
-              const isActive = location.pathname === item.href;
-
-              return (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className={cn(
-                    "flex items-center space-x-2 transition-colors hover:text-foreground/80",
-                    isActive ? "text-foreground" : "text-foreground/60",
-                  )}
-                >
-                  <Icon className="h-4 w-4" />
-                  <span>{item.name}</span>
-                </Link>
-              );
-            })}
-          </nav>
-
-          {/* Right side actions */}
-          <div className="ml-auto flex items-center space-x-4">
+          {/* Right Section - Search, Notifications, User */}
+          <div className="flex items-center space-x-3">
             {/* Search */}
             <div className="hidden lg:flex">
               <div className="relative">
@@ -115,10 +116,10 @@ export function PortalLayout({ children }: PortalLayoutProps) {
       </header>
 
       {/* Main Content */}
-      <main className="flex-1">{children}</main>
+      <main className="flex-1 overflow-y-auto pt-16">{children}</main>
 
       {/* Footer */}
-      <footer className="border-t bg-muted/40">
+      <footer className="border-t bg-muted/40 flex-shrink-0">
         <div className="container flex flex-col items-center justify-between gap-4 py-6 md:h-16 md:flex-row md:py-0">
           <div className="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
             <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
